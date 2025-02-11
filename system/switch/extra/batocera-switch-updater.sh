@@ -847,18 +847,19 @@ T=$THEME_COLOR_RYUJINX
 	            # echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST GREEMDEV USE 1.2.96 INSTEAD   ${T}/1.2.96/ ${GREEN}SUCCESS";
 			  # fi
 	# fi
+if [ "$N" = "1" ]; then C=""; else C="$E/$N"; fi
 version="1.2.81"
 ryu="/userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz"
 if [ -f "$ryu" ]; then
-    cp /userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
-else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/auyM2KBoFrmv_yBe/ryujinx-1.2.81-linux_x64.tar.gz"
-    cp /userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null; fi
-        if [ -f "$ryu" ] && [ $(stat -c%s "$ryu") -gt 2048 ]; then
-		   echo -e "${T}RYUJINX   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS";
-		else
-		   rm /userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null
-		   echo -e "${T}RYUJINX   [${W}!!${T}] download fail put ryujinx-1.2.81-linux_x64.tar.gz in (/system/switch/appimages) then relaunch script"; fi
+        cp /userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
+     else 
+        wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/auyM2KBoFrmv_yBe/ryujinx-1.2.81-linux_x64.tar.gz"
+        cp /userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null; fi
+           if [ -f "$ryu" ] && [ $(stat -c%s "$ryu") -gt 2048 ]; then
+		      echo -e "${T}RYUJINX   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS";
+		   else
+		      rm /userdata/system/switch/appimages/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null
+		      echo -e "${T}RYUJINX   [${W}!!${T}] download fail put ryujinx-1.2.81-linux_x64.tar.gz in (/system/switch/appimages) then relaunch script"; fi
 
 # --------------------------------------------------------
 # \\ get dependencies for handling ryujinxavalonia
