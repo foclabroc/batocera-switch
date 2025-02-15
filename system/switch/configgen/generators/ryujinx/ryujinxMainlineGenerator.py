@@ -74,11 +74,13 @@ class RyujinxMainlineGenerator(Generator):
             else:
                 commandArray = ["/userdata/system/switch/Ryujinx.AppImage" , rom]
         eslog.debug("Controller Config before Playing: {}".format(controllersConfig.generateSdlGameControllerConfig(playersControllers)))
-        #, "SDL_GAMECONTROLLERCONFIG": controllersConfig.generateSdlGameControllerConfig(playersControllers)
-        return Command.Command(
-            array=commandArray,
-            env={"XDG_CONFIG_HOME":RyujinxHome, "XDG_CACHE_HOME":batoceraFiles.CACHE, "QT_QPA_PLATFORM":"xcb", "SDL_GAMECONTROLLERCONFIG": controllersConfig.generateSdlGameControllerConfig(playersControllers)}
-            )
+        # X Bos series X gamepads with dongle are very problematic
+        if ((system.isOptSet('ryu_sdl_game_controller_config') and not (system.config['ryu_sdl_game_controller_config'] == '0')) or not system.isOptSet('ryu_sdl_game_controller_config')): 
+            env_commandArray={"XDG_CONFIG_HOME":RyujinxHome, "XDG_CACHE_HOME":batoceraFiles.CACHE, "QT_QPA_PLATFORM":"xcb", "SDL_GAMECONTROLLERCONFIG": controllersConfig.generateSdlGameControllerConfig(playersControllers)}            
+        else:
+            env_commandArray={"XDG_CONFIG_HOME":RyujinxHome, "XDG_CACHE_HOME":batoceraFiles.CACHE, "QT_QPA_PLATFORM":"xcb"}
+        
+        return Command.Command(array=commandArray, env=env_commandArray)
 
     def writeRyujinxConfig(RyujinxConfigFile, system, playersControllers):
 
@@ -294,7 +296,8 @@ class RyujinxMainlineGenerator(Generator):
         shown_file_types['nso'] = bool('true')
         data['shown_file_types'] = shown_file_types 
 
-        if ((system.isOptSet('ryu_auto_controller_config') and not (system.config["ryu_auto_controller_config"] == "0")) or not system.isOptSet('ryu_auto_controller_config')):
+
+        if ((system.isOptSet('ryu_auto_controller_config') and not (system.config['ryu_auto_controller_config'] == '0')) or not system.isOptSet('ryu_auto_controller_config')):
             
             filename = "/userdata/system/switch/configgen/debugcontrollers.txt"
             if os.path.exists(filename):
