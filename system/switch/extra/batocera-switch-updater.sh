@@ -900,21 +900,24 @@ if [ -f "$link_ryujinx" ]; then
 		  mkdir $temp/$emu 2>/dev/null
 		  cd $temp/$emu
 		  mv $link_ryujinx $temp/$emu/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null
-		  wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$extra/$emu/xdg-mime" "https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/xdg-mime"
-		  ###curl -sSf "https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/xdg-mime" -o "$extra/$emu/xdg-mime"
+		  # wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$extra/$emu/xdg-mime" "https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/xdg-mime"
+		  # ###curl -sSf "https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/xdg-mime" -o "$extra/$emu/xdg-mime"
 		  chmod a+x "$extra/$emu/xdg-mime"
 		  # curl --progress-bar --remote-name --location $link_ryujinx
 		  LD_LIBRARY_PATH="/userdata/system/switch/extra:/usr/lib64:/usr/lib:/lib:${LD_LIBRARY_PATH}" $extra/batocera-switch-tar -xf $temp/$emu/*.tar.gz
-		  wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/extralibr.zip" "https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/extralibr.zip"
 		  cd /userdata/system/switch/extra/
-          unzip -o -qq /userdata/system/switch/extra/extralibr.zip 2>/dev/null
-		  cp /userdata/system/switch/extra/extralibr/lib* $extra/$emu/
+          # unzip -o -qq /userdata/system/switch/extra/extralibr.zip 2>/dev/null
+		  # cp /userdata/system/switch/extra/extralibr/lib* $extra/$emu/
 		  rm -rf /userdata/system/switch/extra/extralibr 2>/dev/null
 		  rm /userdata/system/switch/extra/extralibr.zip 2>/dev/null
 		  mkdir $extra/$emu/mime 2>/dev/null; 
 		  cp -rL $temp/$emu/publish/mime/* $extra/$emu/mime/ 2>/dev/null;
 		  cp -rL $temp/$emu/publish/*.config $extra/$emu/ 2>/dev/null;
+		  cp -rL $temp/$emu/publish/lib* $extra/$emu/ 2>/dev/null;
 		  cd $extra/$emu
+		  wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/libSDL2.so" "https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/libSDL2.so"
+		  rm $extra/$emu/libSDL2.so 2>/dev/null
+		  cp /userdata/system/switch/extra/libSDL2.so $extra/$emu/ 2>/dev/null;
 		  rm -rf $extra/$emu/dependencies 2>/dev/null
 		  ls -l ./lib* | awk '{print $9}' | cut -d "/" -f2 >> $extra/$emu/dependencies
 		  cd ~/
