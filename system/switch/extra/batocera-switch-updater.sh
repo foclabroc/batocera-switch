@@ -915,9 +915,10 @@ if [ -f "$link_ryujinx" ]; then
 		  cp -rL $temp/$emu/publish/*.config $extra/$emu/ 2>/dev/null;
 		  cp -rL $temp/$emu/publish/lib* $extra/$emu/ 2>/dev/null;
 		  cd $extra/$emu
-		  wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/libSDL2.so" "https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/libSDL2.so"
-		  rm $extra/$emu/libSDL2.so 2>/dev/null
-		  cp /userdata/system/switch/extra/libSDL2.so $extra/$emu/ 2>/dev/null;
+		  mv $extra/$emu/libSDL2.so $extra/$emu/libSDL2-2.0.so.0 2>/dev/null;
+		  #wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/libSDL2.so" "https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/libSDL2.so"
+		  #rm $extra/$emu/libSDL2.so 2>/dev/null
+		  #cp /userdata/system/switch/extra/libSDL2.so $extra/$emu/ 2>/dev/null;
 		  rm -rf $extra/$emu/dependencies 2>/dev/null
 		  ls -l ./lib* | awk '{print $9}' | cut -d "/" -f2 >> $extra/$emu/dependencies
 		  cd ~/
