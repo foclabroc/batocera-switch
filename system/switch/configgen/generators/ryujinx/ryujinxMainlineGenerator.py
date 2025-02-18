@@ -122,7 +122,7 @@ class RyujinxMainlineGenerator(Generator):
                 data['version'] = 42
         else:
             if ryu_version >= 1267:
-                data['version'] = 61
+                data['version'] = 67
             elif ryu_version >= 924:
                 data['version'] = 47
             elif ryu_version > 382:
