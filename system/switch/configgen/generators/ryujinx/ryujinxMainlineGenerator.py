@@ -227,7 +227,7 @@ class RyujinxMainlineGenerator(Generator):
             data['enable_fs_integrity_checks'] = bool('true')    
 
         data['fs_global_access_log_mode'] = 0
-        data['audio_backend'] = 'SDL2'
+        data['audio_backend'] = 'OpenAl'
         data['audio_volume'] = 1
 
         if system.isOptSet('memory_manager_mode'):
@@ -713,7 +713,7 @@ class RyujinxMainlineGenerator(Generator):
         if system.isOptSet('ryu_audio_backend'):
             data['audio_backend'] = system.config["ryu_audio_backend"]
         else:
-            data['audio_backend'] = 'SDL2'
+            data['audio_backend'] = 'OpenAl'
 
         # this erases the user manual configuration.
         # It's problematic in case of hybrid laptop as it may always default to the igpu instead of the dgpu
