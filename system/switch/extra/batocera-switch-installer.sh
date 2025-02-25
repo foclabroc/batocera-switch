@@ -375,19 +375,20 @@ if [[ -e /userdata/system/switch/extra/installation ]]; then
 rm /userdata/system/switch/extra/installation 2>/dev/null
 clear
 echo 
-echo -e "   ${BLUE}INSTALLER BY FOCLABROC ${BLUE}" 
+echo -e "   ${BLUE}INSTALLER BY ${BLUE}"
+echo -e "   ${GREEN}FOCLABROC ${GREEN}"
 echo -e "   ${X}$APPNAME INSTALLED${X}" 
 echo 
 echo 
-echo -e "   ${RED}INFORMATION! ${RED}"
-echo -e "   ${RED}USERDATA MUST BE IN EXT4/BTRFS! TO MAKE SWITCH EMULATION WORKS ${RED}"
-echo -e "   ${RED}NO HELP PROVIDED IF YOU ARE NOT IN EXT4/BTRFS! ${RED}"
-echo -e "   ${RED}IF YOU ARE ALREADY IN BTRFS/EXT4 YOU CAN IGNORE THIS MESSAGE ${RED}"
+echo -e "   ${PURPLE}INFORMATION! ${PURPLE}"
+echo -e "   ${PURPLE}USERDATA MUST BE IN EXT4/BTRFS! TO MAKE SWITCH EMULATION WORKS ${PURPLE}"
+echo -e "   ${PURPLE}NO HELP PROVIDED IF YOU ARE NOT IN EXT4/BTRFS! ${PURPLE}"
+echo -e "   ${PURPLE}IF YOU ARE ALREADY IN BTRFS/EXT4 YOU CAN IGNORE THIS MESSAGE ${PURPLE}"
 echo 
 echo -e "   ${X}IF INSTALLATION/DOWNLOAD FAIL ${X}"
 echo -e "   ${X}> Add manualy appimage/tar/zip in /userdata/system/switch/appimages${X}" 
 echo -e "   ${X}> FILES PACK AVAILABLE HERE : ${X}" 
-echo -e "   ${GREEN}> https://1fichier.com/?eqb0m49d6rey4r4i0zbw ${GREEN}" 
+echo -e "   ${GREEN}> https://1fichier.com/?8furupg6hic0booljbmy ${GREEN}" 
 echo -e "   ${X}> After that launch SWITCH UPDATER from PORTS ${X}" 
 echo
 echo
