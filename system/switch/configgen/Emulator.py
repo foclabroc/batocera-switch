@@ -6,7 +6,7 @@ import collections
 import logging
 
 from configgen.batoceraPaths import BATOCERA_CONF, BATOCERA_SHADERS, DEFAULTS_DIR, ES_SETTINGS, USER_SHADERS
-from configgen.settings.unixSettings import UnixSettings
+from unixSettings import UnixSettings
 
 eslog = logging.getLogger(__name__)
 
