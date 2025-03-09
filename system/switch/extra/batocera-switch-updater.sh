@@ -2131,6 +2131,7 @@ url_es_features_switch=https://raw.githubusercontent.com/foclabroc/batocera-swit
 url_es_systems_switch=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/configs/emulationstation/es_systems_switch.cfg
 url_switchlauncher=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/switchlauncher.py
 url_GeneratorImporter=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/GeneratorImporter.py
+url_unixSettings=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/unixSettings.py
 url_ryujinxMainlineGenerator=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/ryujinx/ryujinxMainlineGenerator.py
 # url_yuzuMainlineGenerator=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/yuzu/yuzuMainlineGenerator.py
 url_sshupdater=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/batocera-switch-sshupdater.sh
