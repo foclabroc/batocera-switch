@@ -210,10 +210,10 @@ rm /usr/share/applications/sudachi-config.desktop 2>/dev/null
 rm /usr/share/applications/yuzu-config.desktop 2>/dev/null
 rm /usr/share/applications/yuzuEA-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinx-config.desktop 2>/dev/null
-rm /usr/share/applications/ryujinxavalonia-config.desktop 2>/dev/null
+rm /usr/share/applications/Ryujinx-Avalonia.desktop 2>/dev/null
 rm /usr/share/applications/ryujinxldn-config.desktop 2>/dev/null
 rm /usr/share/applications/yuzu-config.desktop 2>/dev/null
-rm /usr/share/applications/yuzuea-config.desktop 2>/dev/null
+rm /usr/share/applications/yuzuEA.desktop 2>/dev/null
 rm /usr/share/applications/ryujinx-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinxavalonia-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinxldn-config.desktop 2>/dev/null
@@ -2122,7 +2122,7 @@ rm /userdata/roms/ports/updateryujinxavalonia.sh 2>/dev/null
 # --------------------------------------------------------------------
 # AUTOMATICALLY PULL THE LATEST EMULATORS FEATURES UPDATES / ALSO UPDATE THESE FILES: 
 mkdir -p /userdata/system/switch/extra 2>/dev/null
-mkdir -p /userdata/system/switch/configgen/generators/yuzu 2>/dev/null
+# mkdir -p /userdata/system/switch/configgen/generators/yuzu 2>/dev/null
 mkdir -p /userdata/system/switch/configgen/generators/ryujinx 2>/dev/null
 mkdir -p /userdata/system/configs/emulationstation 2>/dev/null
 mkdir -p /userdata/system/configs/evmapy 2>/dev/null
@@ -2132,7 +2132,7 @@ url_es_systems_switch=https://raw.githubusercontent.com/foclabroc/batocera-switc
 url_switchlauncher=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/switchlauncher.py
 url_GeneratorImporter=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/GeneratorImporter.py
 url_ryujinxMainlineGenerator=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/ryujinx/ryujinxMainlineGenerator.py
-url_yuzuMainlineGenerator=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/yuzu/yuzuMainlineGenerator.py
+# url_yuzuMainlineGenerator=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/yuzu/yuzuMainlineGenerator.py
 url_sshupdater=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/batocera-switch-sshupdater.sh
 url_updater=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/batocera-switch-updater.sh
 url_portsupdater=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/roms/ports/Switch%20Updater.sh
@@ -2150,7 +2150,7 @@ url_portsupdaterkeys=https://raw.githubusercontent.com/foclabroc/batocera-switch
    ###curl -sSf "$url_GeneratorImporter" -o "/userdata/system/switch/configgen/GeneratorImporter.py"
    wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/configgen/generators/ryujinx/ryujinxMainlineGenerator.py" "$url_ryujinxMainlineGenerator"
    ###curl -sSf "$url_ryujinxMainlineGenerator" -o "/userdata/system/switch/configgen/generators/ryujinx/ryujinxMainlineGenerator.py"
-   wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/configgen/generators/yuzu/yuzuMainlineGenerator.py" "$url_yuzuMainlineGenerator"
+   # wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/configgen/generators/yuzu/yuzuMainlineGenerator.py" "$url_yuzuMainlineGenerator"
    ###curl -sSf "$url_yuzuMainlineGenerator" -o "/userdata/system/switch/configgen/generators/yuzu/yuzuMainlineGenerator.py"
       dos2unix "/userdata/system/configs/evmapy/switch.keys" 2>/dev/null
       dos2unix "/userdata/system/configs/emulationstation/es_features_switch.cfg" 2>/dev/null 
@@ -2327,7 +2327,10 @@ rm /userdata/system/switch/extra/display.settings 2>/dev/null
 rm /userdata/system/switch/extra/updater.settings 2>/dev/null
 rm /usr/share/applications/yuzu.desktop 2>/dev/null
 rm /usr/share/applications/Ryujinx-LDN.desktop 2>/dev/null
+rm /usr/share/applications/yuzuEA.desktop 2>/dev/null
+rm /usr/share/applications/Ryujinx-Avalonia.desktop 2>/dev/null
 rm -rf /userdata/system/switch/extra/yuzu 2>/dev/null
+rm -rf /userdata/system/switch/configgen/generators/yuzu 2>/dev/null
 rm -rf /userdata/system/switch/extra/ryujinxldn 2>/dev/null
 rm /userdata/system/switch/appimages/ryujinxldn313.tar.gz 2>/dev/null
 rm /userdata/system/switch/appimages/yuzu1734.AppImage 2>/dev/null

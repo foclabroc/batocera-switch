@@ -171,7 +171,7 @@ class CitronGenerator(Generator):
         
         CitronGenerator.writeYuzuConfig(yuzuConfig,beforeyuzuConfig, system, playersControllers)
         if system.config['emulator'] == 'citron':
-            commandArray = ["/userdata/system/switch/citronlaunch.AppImage", "-f",  "-g", rom ]
+            commandArray = ["/userdata/system/switch/extra/citronlaunch.AppImage", "-f",  "-g", rom ]
                       # "XDG_DATA_HOME":yuzuSaves, , "XDG_CACHE_HOME":batoceraFiles.CACHE, "XDG_CONFIG_HOME":yuzuHome,
         return Command.Command(
             array=commandArray,
