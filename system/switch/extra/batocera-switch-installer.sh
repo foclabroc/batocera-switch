@@ -387,7 +387,9 @@ echo -e "   ${X}Place your keys into /userdata/bios/switch/${X}"
 echo -e "   ${X}Firmware *.nca into /userdata/bios/switch/firmware/${X}" 
 echo
 echo -e "   ${X}-------------------------------------------------------------------${X}"
-echo
+echo -e "   ${X}NOTE : YuzuEA and Ryujinx Avalonia ${X}"
+echo -e "   ${X}       no longer works in 42 for now ${X}"
+echo -e "   ${X}       only Citron Ryujinx and Sudachi are available ${X}"
 echo
 echo -e "   ${X}-------------------------------------------------------------------${X}"
 echo -e "   ${X}IN CASE OF CONTROLLER ISSUES: ${X}"
