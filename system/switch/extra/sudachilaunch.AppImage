@@ -1,0 +1,36 @@
+#!/bin/bash
+export XDG_MENU_PREFIX=batocera-
+export XDG_CONFIG_DIRS=/etc/xdg
+export XDG_CURRENT_DESKTOP=XFCE
+export DESKTOP_SESSION=XFCE
+/userdata/system/switch/extra/batocera-switch-mousemove.sh &
+/userdata/system/switch/extra/batocera-switch-sync-firmware.sh
+#cp /userdata/system/switch/extra/yuzuea/lib* /lib64/ 2>/dev/null
+if [ ! -L /userdata/system/configs/Ryujinx/bis/user/save ]; then mkdir /userdata/system/configs/Ryujinx/bis/user/save 2>/dev/null; rsync -au /userdata/saves/Ryujinx/ /userdata/system/configs/Ryujinx/bis/user/save/ 2>/dev/null; fi
+if [ ! -L /userdata/system/configs/yuzu/nand/user/save ]; then mkdir /userdata/system/configs/yuzu/nand/user/save 2>/dev/null; rsync -au /userdata/saves/yuzu/ /userdata/system/configs/yuzu/nand/user/save/ 2>/dev/null; fi
+mkdir -p /userdata/system/configs/yuzu/keys 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/configs/yuzu/keys/ 2>/dev/null 
+mkdir -p /userdata/system/.local/share/yuzu/keys 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/.local/share/yuzu/keys/ 2>/dev/null 
+mkdir -p /userdata/system/configs/Ryujinx/system 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/configs/Ryujinx/system/ 2>/dev/null 
+rm /usr/bin/yuzu 2>/dev/null; rm /usr/bin/yuzu-room 2>/dev/null
+mkdir -p /userdata/system/switch/logs 2>/dev/null 
+log1=/userdata/system/switch/logs/sudachi-out.txt 2>/dev/null 
+log2=/userdata/system/switch/logs/sudachi-err.txt 2>/dev/null 
+rm $log1 2>/dev/null && rm $log2 2>/dev/null 
+ulimit -H -n 819200; ulimit -S -n 819200; ulimit -S -n 819200 yuzu;
+rom="$(echo "$@" | sed 's,-f -g ,,g')" 
+if [[ "$rom" = "" ]]; then 
+  /userdata/system/switch/sudachi.AppImage -f -g > >(tee "$log1") 2> >(tee "$log2" >&2) 
+else 
+  rm /tmp/switchromname 2>/dev/null 
+    echo "$rom" >> /tmp/switchromname 2>/dev/null 
+      /userdata/system/switch/extra/batocera-switch-nsz-converter.sh 
+    rom="$(cat /tmp/switchromname)" 
+  fs=$(blkid | grep "$(df -h /userdata | awk 'END {print $1}')" | sed 's,^.*TYPE=,,g' | sed 's,",,g' | tr 'a-z' 'A-Z') 
+  if [[ "$fs" == *"EXT"* ]] || [[ "$fs" == *"BTR"* ]]; then 
+    rm /tmp/yuzurom 2>/dev/null; ln -sf "$rom" "/tmp/yuzurom"; ROM="/tmp/yuzurom"; 
+    /userdata/system/switch/sudachi.AppImage -f -g "$ROM" 1>"$log1" 2>"$log2" 
+  else 
+    ROM="$rom" 
+    /userdata/system/switch/sudachi.AppImage -f -g "$ROM" 1>"$log1" 2>"$log2" 
+  fi 
+fi

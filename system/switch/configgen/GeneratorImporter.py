@@ -18,20 +18,20 @@ def getGenerator(emulator: str) -> Generator:
         from generators.sudachi.sudachiGenerator import SudachiGenerator
         return SudachiGenerator()
 
-    if emulator == 'yuzu-early-access':
-        from generators.yuzu.yuzuMainlineGenerator import YuzuMainlineGenerator
-        return YuzuMainlineGenerator()
+    # if emulator == 'yuzu-early-access':
+        # from generators.yuzu.yuzuMainlineGenerator import YuzuMainlineGenerator
+        # return YuzuMainlineGenerator()
 
     if emulator == 'ryujinx':
         from generators.ryujinx.ryujinxMainlineGenerator import RyujinxMainlineGenerator
         return RyujinxMainlineGenerator()
 
-    if emulator == 'ryujinx-continuous':
-        from generators.ryujinx.ryujinxMainlineGenerator import RyujinxMainlineGenerator
-        return RyujinxMainlineGenerator()
+    # if emulator == 'ryujinx-continuous':
+        # from generators.ryujinx.ryujinxMainlineGenerator import RyujinxMainlineGenerator
+        # return RyujinxMainlineGenerator()
 
-    if emulator == 'ryujinx-avalonia':
-        from generators.ryujinx.ryujinxMainlineGenerator import RyujinxMainlineGenerator
-        return RyujinxMainlineGenerator()
+    # if emulator == 'ryujinx-avalonia':
+        # from generators.ryujinx.ryujinxMainlineGenerator import RyujinxMainlineGenerator
+        # return RyujinxMainlineGenerator()
 
     raise Exception(f"no generator found for emulator {emulator}")

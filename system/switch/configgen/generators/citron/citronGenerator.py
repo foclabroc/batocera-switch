@@ -35,6 +35,9 @@ class CitronGenerator(Generator):
         if os.path.exists("/userdata/system/switch/citron.AppImage"):
             st = os.stat("/userdata/system/switch/citron.AppImage")
             os.chmod("/userdata/system/switch/citron.AppImage", st.st_mode | stat.S_IEXEC)
+        if os.path.exists("/userdata/system/switch/extra/citronlaunch.AppImage"):
+            st = os.stat("/userdata/system/switch/extra/citronlaunch.AppImage")
+            os.chmod("/userdata/system/switch/extra/citronlaunch.AppImage", st.st_mode | stat.S_IEXEC)
 
             #chmod citron app
             st = os.stat("/userdata/system/switch/extra/batocera-config-citron")
@@ -45,12 +48,54 @@ class CitronGenerator(Generator):
         if not os.path.exists("/lib/libthai.so.0"):
             st = os.symlink("/lib/libthai.so.0.3.1","/lib/libthai.so.0")
 
-        #Create Keys Folder
+        #Create oldyuzu Folder needed by citron/sudachi
         if not os.path.exists(batoceraFiles.CONF + "/yuzu"):
             os.mkdir(batoceraFiles.CONF + "/yuzu")
 
         if not os.path.exists(batoceraFiles.CONF + "/yuzu/keys"):
             os.mkdir(batoceraFiles.CONF + "/yuzu/keys")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/amiibo"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/amiibo")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/crash_dumps"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/crash_dumps")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/custom"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/custom")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/dump"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/dump")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/game_list"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/game_list")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/icons"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/icons")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/load"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/load")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/log"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/log")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/nand"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/nand")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/play_time"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/play_time")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/screenshots"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/screenshots")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/sdmc"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/sdmc")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/shader"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/shader")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/tas"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/tas")
 
         #Create OS Saves folder
         if not os.path.exists(batoceraFiles.SAVES + "/yuzu"):
@@ -126,7 +171,7 @@ class CitronGenerator(Generator):
         
         CitronGenerator.writeYuzuConfig(yuzuConfig,beforeyuzuConfig, system, playersControllers)
         if system.config['emulator'] == 'citron':
-            commandArray = ["/userdata/system/switch/citron.AppImage", "-f",  "-g", rom ]
+            commandArray = ["/userdata/system/switch/citronlaunch.AppImage", "-f",  "-g", rom ]
                       # "XDG_DATA_HOME":yuzuSaves, , "XDG_CACHE_HOME":batoceraFiles.CACHE, "XDG_CONFIG_HOME":yuzuHome,
         return Command.Command(
             array=commandArray,
@@ -250,18 +295,18 @@ class CitronGenerator(Generator):
         yuzuConfig.set("UI", "Screenshots\\screenshot_path", "/userdata/screenshots")
         yuzuConfig.set("UI", "Screenshots\\screenshot_path\\default", "false")
 
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20citron\Controller_KeySeq", "Minus+Plus")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20citron\Controller_KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\KeySeq", "F4")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq", "Minus+B")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq", "Home+ZL")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq", "Esc")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq", "P")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20citron\Controller_KeySeq", "Minus+Plus")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20citron\Controller_KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\KeySeq", "F4")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq", "Minus+B")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq", "Home+ZL")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq", "Esc")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq", "P")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq\default", "false")
 
     # Data Storage section
         if not yuzuConfig.has_section("Data%20Storage"):
@@ -1531,7 +1576,7 @@ class CitronGenerator(Generator):
 
 
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_connected", "false")
-                yuzuConfig.set("Controls", "player_" + controllernumber + "_connected\default", "true")
+                yuzuConfig.set("Controls", "player_" + controllernumber + "_connected\\default", "true")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_type", "0")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_type\\default", "true")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_vibration_enabled", "true")

@@ -11,7 +11,7 @@ default:
     forceNoBezel:   false
 
 switch:
-  emulator: yuzu-early-access
-  core:     yuzu-early-access
+  emulator: citron
+  core:     citron
   options:
     forceNoBezel: true

@@ -5,5 +5,5 @@ default:
     hud_support: false
 
 switch:
-  emulator: yuzu-early-access
-  core:     yuzu-early-access
+  emulator: citron
+  core:     citron

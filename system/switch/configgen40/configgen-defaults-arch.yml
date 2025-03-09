@@ -1,9 +1,0 @@
-default:
-  emulator:
-  core:
-  options:
-    hud_support: false
-
-switch:
-  emulator: yuzu-mainline
-  core:     yuzu-mainline
