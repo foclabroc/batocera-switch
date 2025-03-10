@@ -197,6 +197,7 @@ mkdir /userdata/system/switch/extra 2>/dev/null
 mkdir /userdata/system/switch/configgen 2>/dev/null
 mkdir /userdata/system/switch/configgen/generators 2>/dev/null
 mkdir /userdata/system/switch/configgen/generators/citron 2>/dev/null
+mkdir /userdata/system/switch/configgen/generators/yuzu 2>/dev/null
 mkdir /userdata/system/switch/configgen/generators/ryujinx 2>/dev/null
 mkdir /userdata/system/switch/configgen/generators/sudachi 2>/dev/null
 
@@ -211,6 +212,7 @@ url=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/sy
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-config-ryujinx" "$url/batocera-config-ryujinx"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-config-sudachi" "$url/batocera-config-sudachi"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-config-sudachiQL" "$url/batocera-config-sudachiQL"
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-config-yuzuEA" "$url/batocera-config-yuzuEA"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-switch-libselinux.so.1" "$url/batocera-switch-libselinux.so.1"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-switch-libthai.so.0.3" "$url/batocera-switch-libthai.so.0.3"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-switch-libtinfo.so.6" "$url/batocera-switch-libtinfo.so.6"
@@ -223,6 +225,7 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/icon
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/libthai.so.0.3.1" "$url/libthai.so.0.3.1"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/ryujinx-avalonia.png" "$url/ryujinx-avalonia.png"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/ryujinx.png" "$url/ryujinx.png"
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/yuzuEA.png" "$url/yuzuEA.png"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/sudachi.png" "$url/sudachi.png"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citron.png" "$url/citron.png"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-config-citron" "$url/batocera-config-citron"
@@ -246,6 +249,12 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citr
 path=/userdata/system/switch/configgen/generators/sudachi
 url=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/sudachi
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/sudachiGenerator.py" "$url/sudachiGenerator.py"
+# -------------------------------------------------------------------- 
+# FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/GENERATORS/YUZU
+path=/userdata/system/switch/configgen/generators/yuzu
+url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/configgen/generators/yuzu
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/__init__.py" "$url/__init__.py"
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/yuzuMainlineGenerator.py" "$url/yuzuMainlineGenerator.py"
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/GENERATORS
 path=/userdata/system/switch/configgen/generators
@@ -387,9 +396,9 @@ echo -e "   ${X}Place your keys into /userdata/bios/switch/${X}"
 echo -e "   ${X}Firmware *.nca into /userdata/bios/switch/firmware/${X}" 
 echo
 echo -e "   ${X}-------------------------------------------------------------------${X}"
-echo -e "   ${X}NOTE : YuzuEA and Ryujinx Avalonia ${X}"
+echo -e "   ${X}NOTE : Ryujinx Avalonia ${X}"
 echo -e "   ${X}       no longer works in 42 for now ${X}"
-echo -e "   ${X}       only Citron Ryujinx and Sudachi are available ${X}"
+echo -e "   ${X}       only YuzuEA Citron Ryujinx and Sudachi are available ${X}"
 echo
 echo -e "   ${X}-------------------------------------------------------------------${X}"
 echo -e "   ${X}IN CASE OF CONTROLLER ISSUES: ${X}"

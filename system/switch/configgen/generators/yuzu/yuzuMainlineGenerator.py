@@ -4,10 +4,6 @@ from configgen.generators.Generator import Generator
 from configgen import Command as Command
 import os
 import stat
-import json
-import uuid
-from os import path
-from os import environ
 import shutil
 import batoceraFiles
 import controllersConfig as controllersConfig
@@ -30,19 +26,22 @@ class YuzuMainlineGenerator(Generator):
 
     def getHotkeysContext(self) -> HotkeysContext:
         return {
-            "name": "yuzu-early-access",
+            "name": "yuzu-ea",
             "keys": { "exit": ["KEY_LEFTALT", "KEY_F4"] }
         }
 
     def generate(self, system, rom, playersControllers, metadata, guns, wheels, gameResolution):
-        #handles chmod so you just need to download yuzu.AppImage
-        if os.path.exists("/userdata/system/switch/yuzu.AppImage"):
-            st = os.stat("/userdata/system/switch/yuzu.AppImage")
-            os.chmod("/userdata/system/switch/yuzu.AppImage", st.st_mode | stat.S_IEXEC)
+        #handles chmod
+        if os.path.exists("/userdata/system/switch/extra/yuzuealaunch.AppImage"):
+            st = os.stat("/userdata/system/switch/extra/yuzuealaunch.AppImage")
+            os.chmod("/userdata/system/switch/extra/yuzuealaunch.AppImage", st.st_mode | stat.S_IEXEC)
 
         if os.path.exists("/userdata/system/switch/yuzuEA.AppImage"):
             st = os.stat("/userdata/system/switch/yuzuEA.AppImage")
             os.chmod("/userdata/system/switch/yuzuEA.AppImage", st.st_mode | stat.S_IEXEC)
+            #chmod yuzuea app
+            st = os.stat("/userdata/system/switch/extra/batocera-config-yuzuEA")
+            os.chmod("/userdata/system/switch/extra/batocera-config-yuzuEA", st.st_mode | stat.S_IEXEC)
 
         if not os.path.exists("/lib/libthai.so.0.3.1"):
             copyfile("/userdata/system/switch/extra/libthai.so.0.3.1", "/lib/libthai.so.0.3.1")
@@ -106,14 +105,29 @@ class YuzuMainlineGenerator(Generator):
         beforeyuzuConfig = batoceraFiles.CONF + '/yuzu/before-qt-config.ini'
         
         YuzuMainlineGenerator.writeYuzuConfig(yuzuConfig,beforeyuzuConfig, system, playersControllers)
-        if system.config['emulator'] == 'yuzu-early-access':
-            commandArray = ["/userdata/system/switch/yuzuEA.AppImage", "-f", "-g", rom ]
+        if system.config['emulator'] == 'yuzu-ea':
+            commandArray = ["/userdata/system/switch/extra/yuzuEAlaunch.AppImage", "-f", "-g", rom ]
         else:
             commandArray = ["/userdata/system/switch/yuzu.AppImage", "-f",  "-g", rom ]
                       # "XDG_DATA_HOME":yuzuSaves, , "XDG_CACHE_HOME":batoceraFiles.CACHE, "XDG_CONFIG_HOME":yuzuHome,
         return Command.Command(
             array=commandArray,
-            env={"QT_QPA_PLATFORM":"xcb","SDL_GAMECONTROLLERCONFIG": controllersConfig.generateSdlGameControllerConfig(playersControllers) }
+            env={"XDG_DATA_HOME":"/userdata/system/configs",
+                 "XDG_CONFIG_HOME":"/userdata/system/configs",
+                 "XDG_CACHE_HOME":"/userdata/system/configs",
+                 "SDL_GAMECONTROLLERCONFIG": controllersConfig.generateSdlGameControllerConfig(playersControllers),
+                 "DRI_PRIME":"1", 
+                 "AMD_VULKAN_ICD":"RADV",
+                 "DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1":"1",
+                 "QT_XKB_CONFIG_ROOT":"/usr/share/X11/xkb",
+                 "NO_AT_BRIDGE":"1",
+                 "XDG_MENU_PREFIX":"batocera-",
+                 "XDG_CONFIG_DIRS":"/etc/xdg",
+                 "XDG_CURRENT_DESKTOP":"XFCE",
+                 "DESKTOP_SESSION":"XFCE",
+                 "QT_FONT_DPI":"96",
+                 "QT_SCALE_FACTOR":"1",
+                 "GDK_SCALE":"1"}
             )
 
 
