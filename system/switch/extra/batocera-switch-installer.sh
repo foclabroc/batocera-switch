@@ -407,6 +407,7 @@ echo -e "   ${X}2) use [autocontroller = off] in advanced settings & ${X}"
 echo -e "   ${X}   configure controller manually in f1-applications ${X}"
 echo
 echo -e "   ${X}-------------------------------------------------------------------${X}"
+echo -e "   ${GREEN}RELOAD YOUR GAMELIST AND ENJOY${GREEN}" 
 echo 
 echo 
 else

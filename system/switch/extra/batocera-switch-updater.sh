@@ -189,6 +189,18 @@ rm -rf "$f" 2>/dev/null
    echo "Terminal=false" >> "$f"
    echo "Type=Application" >> "$f"
    echo "Categories=Game;batocera.linux;" >> "$f"
+      if [[ "$Name" = "yuzuEA" ]]; then 
+         echo "Name=YuzuEA-config" >> "$f"
+         fi
+      if [[ "$Name" = "citron" ]]; then 
+         echo "Name=Citron-config" >> "$f"
+         fi
+      if [[ "$Name" = "sudachi" ]]; then 
+         echo "Name=Sudachi-config" >> "$f"
+         fi
+      if [[ "$Name" = "Ryujinx" ]]; then 
+         echo "Name=Ryujinx-config" >> "$f"
+         fi
    ####
    # if [[ "$Name" != "switch-updater" ]]; then 
       # echo "Name=$name-config" >> "$f"
@@ -2416,6 +2428,9 @@ fi
                   DISPLAY=:0.0 batocera_update_switch console && DISPLAY=:0.0 post-install
             fi 
 #################################################################################################################################
+chmod a+x /userdata/system/switch/extra/batocera-config* 2>/dev/null
+chmod a+x /userdata/system/switch/*.AppImage 2>/dev/null
+chmod a+x /userdata/system/switch/extra/*.AppImage 2>/dev/null
 rm /userdata/system/switch/extra/ryujinx/libSDL2.so 2>/dev/null
 rm /userdata/system/switch/extra/ryujinxavalonia/libSDL2.so 2>/dev/null
 rm "/userdata/roms/ports/Switch Updater40.sh.keys" 2>/dev/null
