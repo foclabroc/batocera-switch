@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
     from configgen.Command import Command
     from configgen.controllersConfig import ControllerMapping
-    from configgen.Emulator import Emulator
+    from Emulator import Emulator
     from configgen.types import DeviceInfoMapping, GunMapping, HotkeysContext, Resolution
 
 

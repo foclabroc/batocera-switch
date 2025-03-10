@@ -28,7 +28,7 @@ class RyujinxMainlineGenerator(Generator):
 
     def getHotkeysContext(self) -> HotkeysContext:
         return {
-            "name": "ryujinx",
+            "name": "ryujinx-greem",
             "keys": { "exit": ["KEY_LEFTALT", "KEY_F4"] }
         }
 

@@ -231,18 +231,18 @@ class YuzuMainlineGenerator(Generator):
         yuzuConfig.set("UI", "Screenshots\\screenshot_path\\default", "false")
 
 
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20yuzu\Controller_KeySeq", "Minus+Plus")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20yuzu\Controller_KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\KeySeq", "F4")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq", "Minus+B")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq", "Home+ZL")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq", "Esc")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq", "P")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20yuzu\Controller_KeySeq", "Minus+Plus")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20yuzu\Controller_KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\KeySeq", "F4")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq", "Minus+B")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq", "Home+ZL")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq", "Esc")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq", "P")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq\default", "false")
 
 
     # Data Storage section
@@ -1513,7 +1513,7 @@ class YuzuMainlineGenerator(Generator):
 
 
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_connected", "false")
-                yuzuConfig.set("Controls", "player_" + controllernumber + "_connected\default", "true")
+                yuzuConfig.set("Controls", "player_" + controllernumber + "_connected\\default", "true")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_type", "0")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_type\\default", "true")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_vibration_enabled", "true")

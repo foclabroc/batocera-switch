@@ -22,7 +22,7 @@ def getGenerator(emulator: str) -> Generator:
         from generators.yuzu.yuzuMainlineGenerator import YuzuMainlineGenerator
         return YuzuMainlineGenerator()
 
-    if emulator == 'ryujinx':
+    if emulator == 'ryujinx-greem':
         from generators.ryujinx.ryujinxMainlineGenerator import RyujinxMainlineGenerator
         return RyujinxMainlineGenerator()
 
