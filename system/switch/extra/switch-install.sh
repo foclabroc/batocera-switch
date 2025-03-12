@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get Batocera version
-version=$(batocera-es-swissknife --version | awk '{print $1}' | sed 's/[^0-9]*//g')  # Extracts the numeric part
+version=$(batocera-es-swissknife --version | awk '{print $1}' | sed -E 's/^([0-9]+).*/\1/')  # Extracts the numeric part
 
 # Compare version and decide which download to trigger
 if (( version == 39 || version == 40 )); then
