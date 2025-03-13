@@ -402,11 +402,12 @@ echo
 echo -e "   ${X}-------------------------------------------------------------------${X}"
 echo -e "   ${X}IN CASE OF CONTROLLER ISSUES: ${X}"
 echo 
-echo -e "   ${X}2) use [autocontroller = off] in advanced settings & ${X}"
-echo -e "   ${X}   configure controller manually in f1-applications ${X}"
+echo -e "   ${X} use [autocontroller = off] in advanced settings & ${X}"
+echo -e "   ${X} configure controller manually in f1-applications ${X}"
 echo
 echo -e "   ${X}-------------------------------------------------------------------${X}"
 echo 
+echo -e "   ${GREEN}RELOAD YOUR GAMELIST AND ENJOY${GREEN}" 
 echo 
 else
 clear 
