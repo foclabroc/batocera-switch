@@ -171,9 +171,13 @@ f=$extra/$Name.desktop
 rm -rf "$f" 2>/dev/null
    echo "[Desktop Entry]" >> "$f"
    echo "Version=1.0" >> "$f"
-      if [[ "$Name" = "yuzuEA" ]]; then 
-         echo "Icon=/userdata/system/switch/extra/yuzuEA.png" >> "$f"
-         echo 'Exec=/userdata/system/switch/yuzuEA.AppImage' >> "$f" 
+      if [[ "$Name" = "citron" ]]; then 
+         echo "Icon=/userdata/system/switch/extra/citron.png" >> "$f"
+         echo 'Exec=/userdata/system/switch/extra/batocera-config-citron' >> "$f" 
+         fi
+      if [[ "$Name" = "sudachi" ]]; then 
+         echo "Icon=/userdata/system/switch/extra/sudachi.png" >> "$f"
+         echo 'Exec=/userdata/system/switch/extra/batocera-config-sudachi' >> "$f" 
          fi
       if [[ "$Name" = "Ryujinx" ]]; then 
          echo "Icon=/userdata/system/switch/extra/icon_ryujinxg.png" >> "$f"
@@ -183,15 +187,34 @@ rm -rf "$f" 2>/dev/null
          echo "Icon=/userdata/system/switch/extra/icon_ryujinx.png" >> "$f"
          echo 'Exec=/userdata/system/switch/Ryujinx-Avalonia.AppImage' >> "$f" 
          fi
+      if [[ "$Name" = "yuzuEA" ]]; then 
+         echo "Icon=/userdata/system/switch/extra/yuzuEA.png" >> "$f"
+         echo 'Exec=/userdata/system/switch/yuzuEA.AppImage' >> "$f" 
+         fi
    echo "Terminal=false" >> "$f"
    echo "Type=Application" >> "$f"
    echo "Categories=Game;batocera.linux;" >> "$f"
+      if [[ "$Name" = "yuzuEA" ]]; then 
+         echo "Name=YuzuEA-config" >> "$f"
+         fi
+      if [[ "$Name" = "citron" ]]; then 
+         echo "Name=Citron-config" >> "$f"
+         fi
+      if [[ "$Name" = "sudachi" ]]; then 
+         echo "Name=Sudachi-config" >> "$f"
+         fi
+      if [[ "$Name" = "Ryujinx" ]]; then 
+         echo "Name=Ryujinx-config" >> "$f"
+         fi
+      if [[ "$Name" = "Ryujinx-Avalonia" ]]; then 
+         echo "Name=Ryujinx-Avalonia-config" >> "$f"
+         fi
    ####
-   if [[ "$Name" != "switch-updater" ]]; then 
-      echo "Name=$name-config" >> "$f"
-   else
-      echo "Name=$name" >> "$f"
-   fi 
+   # if [[ "$Name" != "switch-updater" ]]; then 
+      # echo "Name=$name-config" >> "$f"
+   # else
+      # echo "Name=$name" >> "$f"
+   # fi 
    ####
       dos2unix "$f" 2>/dev/null
       chmod a+x "$f" 2>/dev/null
@@ -201,10 +224,16 @@ rm -rf "$f" 2>/dev/null
 # remove old version dekstop shortcuts from ~/.local/share/applications 
 rm /userdata/system/.local/share/applications/yuzu-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/yuzuEA-config.desktop 2>/dev/null
+rm /userdata/system/.local/share/applications/citron-config.desktop 2>/dev/null
+rm /userdata/system/.local/share/applications/sudachi-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/ryujinx-config.desktop 2>/dev/null
+rm /userdata/system/.local/share/applications/Ryujinx-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/ryujinxavalonia-config.desktop 2>/dev/null
+rm /userdata/system/.local/share/applications/Ryujinx-Avalonia-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/ryujinxldn-config.desktop 2>/dev/null
 # remove old version dekstop shortcuts from /usr/share/applications:
+rm /usr/share/applications/citron-config.desktop 2>/dev/null
+rm /usr/share/applications/sudachi-config.desktop 2>/dev/null
 rm /usr/share/applications/yuzu-config.desktop 2>/dev/null
 rm /usr/share/applications/yuzuEA-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinx-config.desktop 2>/dev/null
@@ -214,10 +243,13 @@ rm /usr/share/applications/yuzu-config.desktop 2>/dev/null
 rm /usr/share/applications/yuzuea-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinx-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinxavalonia-config.desktop 2>/dev/null
+rm /usr/share/applications/Ryujinx-Avalonia-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinxldn-config.desktop 2>/dev/null
 # generate new desktop shortcuts: 
-generate-shortcut-launcher 'yuzuEA' 'yuzuEA'
+generate-shortcut-launcher 'citron' 'citron'
 generate-shortcut-launcher 'Ryujinx' 'ryujinx'
+generate-shortcut-launcher 'sudachi' 'sudachi'
+generate-shortcut-launcher 'yuzuEA' 'yuzuEA'
 generate-shortcut-launcher 'Ryujinx-Avalonia' 'ryujinx-Avalonia'
 ######################################################################
 ######################################################################
@@ -1912,7 +1944,7 @@ fi
    chmod a+x /userdata/system/switch/extra/yuzu-controller-patcher.sh 2>/dev/null  
 # -------------------------------------------------------------------
 # prepare patcher 
-#url_patcher="https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/extra/batocera-switch-patcher.sh"
+url_patcher="https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/extra/batocera-switch-patcher.sh"
    wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/batocera-switch-patcher.sh" "$url_patcher"
    ###curl -sSf "$url_patcher" -o "/userdata/system/switch/extra/batocera-switch-patcher.sh"
    dos2unix ~/switch/extra/batocera-switch-patcher.sh 2>/dev/null
@@ -2442,6 +2474,9 @@ fi
                   DISPLAY=:0.0 batocera_update_switch console && DISPLAY=:0.0 post-install
             fi 
 #################################################################################################################################
+chmod a+x /userdata/system/switch/extra/batocera-config* 2>/dev/null
+chmod a+x /userdata/system/switch/*.AppImage 2>/dev/null
+chmod a+x /userdata/system/switch/extra/*.AppImage 2>/dev/null
 rm /userdata/system/switch/extra/ryujinx/libSDL2.so 2>/dev/null
 rm /userdata/system/switch/extra/ryujinxavalonia/libSDL2.so 2>/dev/null
 rm "/userdata/roms/ports/Switch Updater40.sh.keys" 2>/dev/null

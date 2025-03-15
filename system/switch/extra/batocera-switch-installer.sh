@@ -2,7 +2,7 @@
 # BATOCERA.PRO INSTALLER
 ######################################################################
 #--------------------------------------------------------------------- 
-APPNAME="SWITCH-EMULATION FOR 41+" 
+APPNAME="SWITCH-EMULATION FOR 41" 
 ORIGIN="github.com/foclabroc/batocera-switch" 
 #---------------------------------------------------------------------
 ######################################################################
@@ -303,15 +303,15 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Swit
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-screenshot.png" "$url/Switch Updater-screenshot.png"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-wheel.png" "$url/Switch Updater-wheel.png"
 # -------------------------------------------------------------------- 
-# FILL /USERDATA/SYSTEM/.LOCAL/SHARE/APPLICATIONS
-path=/userdata/system/.local/share/applications
-url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/extra
-wget --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citron-config.desktop" "$url/citron-config.desktop"
-# -------------------------------------------------------------------- 
-# FILL /USERDATA/SYSTEM/.LOCAL/SHARE/APPLICATIONS
-path=/userdata/system/.local/share/applications
-url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/extra
-wget --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/sudachi-config.desktop" "$url/sudachi-config.desktop"
+# # FILL /USERDATA/SYSTEM/.LOCAL/SHARE/APPLICATIONS
+# path=/userdata/system/.local/share/applications
+# url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/extra
+# wget --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citron-config.desktop" "$url/citron-config.desktop"
+# # -------------------------------------------------------------------- 
+# # FILL /USERDATA/SYSTEM/.LOCAL/SHARE/APPLICATIONS
+# path=/userdata/system/.local/share/applications
+# url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/extra
+# wget --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/sudachi-config.desktop" "$url/sudachi-config.desktop"
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/ROMS/SWITCH
 path=/userdata/roms/switch
