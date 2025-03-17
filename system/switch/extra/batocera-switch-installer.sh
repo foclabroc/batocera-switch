@@ -407,9 +407,13 @@ echo -e "   ${X}2) use [autocontroller = off] in advanced settings & ${X}"
 echo -e "   ${X}   configure controller manually in f1-applications ${X}"
 echo
 echo -e "   ${X}-------------------------------------------------------------------${X}"
+echo 
 echo -e "   ${GREEN}RELOAD YOUR GAMELIST AND ENJOY${GREEN}" 
 echo 
-echo 
+echo -e "   ${GREEN}Installation Completed. Press Enter to exit...${GREEN}"
+echo -e "   ${GREEN}Installation Terminée. Appuyez sur Entrée pour quitter...${X}"
+read -r  # Attend que l'utilisateur appuie sur Entrée
+exit 0
 else
 clear 
 echo 
