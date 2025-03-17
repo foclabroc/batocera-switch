@@ -371,64 +371,69 @@ sysctl -w net.ipv6.conf.default.disable_ipv6=0 1>/dev/null 2>/dev/null
 sysctl -w net.ipv6.conf.all.disable_ipv6=0 1>/dev/null 2>/dev/null
 X='\033[0m' # / resetcolor
 if [[ -e /userdata/system/switch/extra/installation ]]; then
-rm /userdata/system/switch/extra/installation 2>/dev/null
-clear
-echo 
-echo -e "   ${BLUE}INSTALLER BY ${BLUE}"
-echo -e "   ${GREEN}FOCLABROC ${GREEN}"
-echo -e "   ${X}$APPNAME INSTALLED${X}" 
-echo 
-echo 
-echo -e "   ${PURPLE}INFORMATION! ${PURPLE}"
-echo -e "   ${PURPLE}USERDATA MUST BE IN EXT4/BTRFS! TO MAKE SWITCH EMULATION WORKS ${PURPLE}"
-echo -e "   ${PURPLE}NO HELP PROVIDED IF YOU ARE NOT IN EXT4/BTRFS! ${PURPLE}"
-echo -e "   ${PURPLE}IF YOU ARE ALREADY IN BTRFS/EXT4 YOU CAN IGNORE THIS MESSAGE ${PURPLE}"
-echo 
-echo -e "   ${X}IF INSTALLATION/DOWNLOAD FAIL ${X}"
-echo -e "   ${X}> Add manualy appimage/tar/zip in /userdata/system/switch/appimages${X}" 
-echo -e "   ${X}> FILES PACK AVAILABLE HERE : ${X}" 
-echo -e "   ${GREEN}> https://1fichier.com/?8furupg6hic0booljbmy ${GREEN}" 
-echo -e "   ${X}> After that launch SWITCH UPDATER from PORTS ${X}" 
-echo
-echo
-echo -e "   ${X}-------------------------------------------------------------------${X}"
-echo -e "   ${X}Place your keys into /userdata/bios/switch/${X}" 
-echo -e "   ${X}Firmware *.nca into /userdata/bios/switch/firmware/${X}" 
-echo
-echo -e "   ${X}-------------------------------------------------------------------${X}"
-echo -e "   ${X}NOTE : Ryujinx Avalonia ${X}"
-echo -e "   ${X}       no longer works in 42 for now ${X}"
-echo -e "   ${X}       only YuzuEA Citron Ryujinx and Sudachi are available ${X}"
-echo
-echo -e "   ${X}-------------------------------------------------------------------${X}"
-echo -e "   ${X}IN CASE OF CONTROLLER ISSUES: ${X}"
-echo 
-echo -e "   ${X}2) use [autocontroller = off] in advanced settings & ${X}"
-echo -e "   ${X}   configure controller manually in f1-applications ${X}"
-echo
-echo -e "   ${X}-------------------------------------------------------------------${X}"
-echo 
-echo -e "   ${GREEN}RELOAD YOUR GAMELIST AND ENJOY${GREEN}" 
-echo 
-echo -e "   ${GREEN}Installation Completed. Press Enter to exit...${GREEN}"
-echo -e "   ${GREEN}Installation Terminée. Appuyez sur Entrée pour quitter...${X}"
-read -r  # Attend que l'utilisateur appuie sur Entrée
-exit 0
+    rm /userdata/system/switch/extra/installation 2>/dev/null
+    clear
+    echo 
+    echo -e "   ${BLUE}INSTALLER BY ${BLUE}"
+    echo -e "   ${GREEN}FOCLABROC ${GREEN}"
+    echo -e "   ${X}$APPNAME INSTALLED${X}" 
+    echo 
+    echo 
+    echo -e "   ${PURPLE}INFORMATION! ${PURPLE}"
+    echo -e "   ${PURPLE}USERDATA MUST BE IN EXT4/BTRFS! TO MAKE SWITCH EMULATION WORKS ${PURPLE}"
+    echo -e "   ${PURPLE}NO HELP PROVIDED IF YOU ARE NOT IN EXT4/BTRFS! ${PURPLE}"
+    echo -e "   ${PURPLE}IF YOU ARE ALREADY IN BTRFS/EXT4 YOU CAN IGNORE THIS MESSAGE ${PURPLE}"
+    echo 
+    echo -e "   ${X}IF INSTALLATION/DOWNLOAD FAIL ${X}"
+    echo -e "   ${X}> Add manualy appimage/tar/zip in /userdata/system/switch/appimages${X}" 
+    echo -e "   ${X}> FILES PACK AVAILABLE HERE : ${X}" 
+    echo -e "   ${GREEN}> https://1fichier.com/?8furupg6hic0booljbmy ${GREEN}" 
+    echo -e "   ${X}> After that launch SWITCH UPDATER from PORTS ${X}" 
+    echo
+    echo
+    echo -e "   ${X}-------------------------------------------------------------------${X}"
+    echo -e "   ${X}Place your keys into /userdata/bios/switch/${X}" 
+    echo -e "   ${X}Firmware *.nca into /userdata/bios/switch/firmware/${X}" 
+    echo
+    echo -e "   ${X}-------------------------------------------------------------------${X}"
+    echo -e "   ${X}NOTE : Ryujinx Avalonia ${X}"
+    echo -e "   ${X}       no longer works in 42 for now ${X}"
+    echo -e "   ${X}       only YuzuEA Citron Ryujinx and Sudachi are available ${X}"
+    echo
+    echo -e "   ${X}-------------------------------------------------------------------${X}"
+    echo -e "   ${X}IN CASE OF CONTROLLER ISSUES: ${X}"
+    echo 
+    echo -e "   ${X}2) use [autocontroller = off] in advanced settings & ${X}"
+    echo -e "   ${X}   configure controller manually in f1-applications ${X}"
+    echo
+    echo -e "   ${X}-------------------------------------------------------------------${X}"
+    echo 
+    echo -e "   ${GREEN}RELOAD YOUR GAMELIST AND ENJOY${GREEN}" 
+    echo 
+    echo -e "   ${GREEN}Installation Completed. Press Enter to exit...${GREEN}"
+    echo -e "   ${GREEN}Installation Terminée. Appuyez sur Entrée pour quitter...${X}"
+    read -r  # Attend que l'utilisateur appuie sur Entrée
+    exit 0
 else
-clear 
-echo 
-echo 
-echo -e "   ${X}Looks like the installation failed :(${X}" 
-echo
-echo -e "   ${X}Try running the script again...${X}" 
-echo
-echo
-echo -e "   ${X}If it still fails, try installing using this command instead: "
-echo
-echo -e "   ${X}cd /userdata ; wget -O s batocera.pro/s ; chmod 777 s ; ./s "
-echo 
-echo 
-sleep 1
-exit 0
+    clear 
+    echo 
+    echo 
+    echo -e "   ${X}Looks like the installation failed :(${X}" 
+    echo
+    echo -e "   ${X}Try running the script again...${X}" 
+    echo
+    echo
+    echo -e "   ${X}If it still fails, try installing using this command instead: "
+    echo
+    echo -e "   ${X}cd /userdata ; wget -O s batocera.pro/s ; chmod 777 s ; ./s "
+    echo 
+    echo 
+    sleep 1
+    exit 0
 fi
+
+# Add this line at the end for the "Press Enter to exit" message:
+echo "Press Enter to exit"
+read -r  # Wait for the user to press Enter
+exit 0
 # done. 
