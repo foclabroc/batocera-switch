@@ -412,7 +412,10 @@ if [[ -e /userdata/system/switch/extra/installation ]]; then
     echo 
     echo -e "   ${GREEN}Installation Completed. Press Enter to exit...${GREEN}"
     echo -e "   ${GREEN}Installation Terminée. Appuyez sur Entrée pour quitter...${X}"
-    read -r  # Attend que l'utilisateur appuie sur Entrée
+    while true; do
+        read
+        break
+    done
     exit 0
 else
     clear 
@@ -431,9 +434,3 @@ else
     sleep 1
     exit 0
 fi
-
-# Add this line at the end for the "Press Enter to exit" message:
-echo "Press Enter to exit"
-read -r  # Wait for the user to press Enter
-exit 0
-# done. 
