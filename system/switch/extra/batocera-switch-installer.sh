@@ -412,11 +412,8 @@ if [[ -e /userdata/system/switch/extra/installation ]]; then
     echo 
     echo -e "   ${GREEN}Installation Completed. Press Enter to exit...${GREEN}"
     echo -e "   ${GREEN}Installation Terminée. Appuyez sur Entrée pour quitter...${X}"
-    select opt in "Press Enter to exit"; do
-      break
-    done
-
-exit 0
+    sleep 8
+    exit 0
 else
     clear 
     echo 
