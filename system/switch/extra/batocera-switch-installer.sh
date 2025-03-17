@@ -409,10 +409,6 @@ echo -e "   ${X}----------------------------------------------------------------
 echo 
 echo -e "   ${GREEN}RELOAD YOUR GAMELIST AND ENJOY${GREEN}" 
 echo 
-echo -e "   ${GREEN}Installation Completed. Press Enter to exit...${GREEN}"
-echo -e "   ${GREEN}Installation Terminée. Appuyez sur Entrée pour quitter...${X}"
-read -r  # Attend que l'utilisateur appuie sur Entrée
-exit 0
 else
 clear 
 echo 
