@@ -412,10 +412,9 @@ if [[ -e /userdata/system/switch/extra/installation ]]; then
     echo 
     echo -e "   ${GREEN}Installation Completed. Press Enter to exit...${GREEN}"
     echo -e "   ${GREEN}Installation Terminée. Appuyez sur Entrée pour quitter...${X}"
-    while true; do
-        read
-        break
-    done
+    stty -icanon
+    read
+    stty icanon
     exit 0
 else
     clear 
