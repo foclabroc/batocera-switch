@@ -410,9 +410,9 @@ if [[ -e /userdata/system/switch/extra/installation ]]; then
     echo 
     echo -e "   ${GREEN}RELOAD YOUR GAMELIST AND ENJOY${GREEN}" 
     echo 
-    echo -e "   ${GREEN}Installation Completed. Press Enter to exit...${GREEN}"
-    echo -e "   ${GREEN}Installation Terminée. Appuyez sur Entrée pour quitter...${X}"
-    sleep 8
+    echo -e "   ${GREEN}Cette page se fermera automatiquement dans 10 secondes...${GREEN}"
+    echo -e "   ${GREEN}This page will automatically close in 10 seconds...${X}"
+    sleep 10
     exit 0
 else
     clear 
@@ -428,6 +428,6 @@ else
     echo -e "   ${X}cd /userdata ; wget -O s batocera.pro/s ; chmod 777 s ; ./s "
     echo 
     echo 
-    sleep 1
+    sleep 5
     exit 0
 fi
