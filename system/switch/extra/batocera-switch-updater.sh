@@ -1600,17 +1600,17 @@ clear
 echo -e "${W}INSTALL WITH LOCAL APPIMAGE (/system/switch/appimages/) OTHERWISE DOWNLOAD IT ONLINE WAIT 1 TO 5 MINUTES!!"
 mkdir /userdata/system/switch/appimages 2>/dev/null
 cd /userdata/system/switch/appimages
-citronE="/userdata/system/switch/appimages/citron0.6.AppImage"
+citronE="/userdata/system/switch/appimages/citron0.6.1.AppImage"
 if [ -f "$citronE" ]; then
-    cp /userdata/system/switch/appimages/citron0.6.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
+    cp /userdata/system/switch/appimages/citron0.6.1.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/citron0.6.AppImage" "https://foclabroc.freeboxos.fr:55973/share/TVT5K3WDE49PHo_s/citron0.6.AppImage"
-    cp /userdata/system/switch/appimages/citron0.6.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null; fi
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/citron0.6.1.AppImage" "https://foclabroc.freeboxos.fr:55973/share/Qn2UEXWifAh2SKE5/citron0.6.1.AppImage"
+    cp /userdata/system/switch/appimages/citron0.6.1.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null; fi
         if [ -f "$citronE" ] && [ $(stat -c%s "$citronE") -gt 2048 ]; then
-		   echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.6 (2025.03.11)/ ${GREEN}SUCCESS";
+		   echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.6.1/ ${GREEN}SUCCESS";
 		else
-		   rm /userdata/system/switch/appimages/citron0.5.AppImage 2>/dev/null
-		   echo -e "${T}CITRON   [${W}!!${T}] download fail put citron0.6.AppImage in (/system/switch/appimages) then relaunch script"; fi
+		   rm /userdata/system/switch/appimages/citron0.6.1AppImage 2>/dev/null
+		   echo -e "${T}CITRON   [${W}!!${T}] download fail put citron0.6.1.AppImage in (/system/switch/appimages) then relaunch script"; fi
 
 chmod 777 /userdata/system/switch/*.AppImage 2>/dev/null
 chmod 777 /userdata/system/switch/extra/*.AppImage 2>/dev/null
@@ -1621,6 +1621,7 @@ rm /userdata/system/switch/appimages/citron0.3.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.4.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.4b.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.5.AppImage 2>/dev/null
+rm /userdata/system/switch/appimages/citron0.6.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.zip 2>/dev/null
 rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
