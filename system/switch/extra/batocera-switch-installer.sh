@@ -200,6 +200,7 @@ mkdir /userdata/system/switch/configgen/generators/citron 2>/dev/null
 mkdir /userdata/system/switch/configgen/generators/yuzu 2>/dev/null
 mkdir /userdata/system/switch/configgen/generators/ryujinx 2>/dev/null
 mkdir /userdata/system/switch/configgen/generators/sudachi 2>/dev/null
+mkdir /userdata/system/switch/configgen/generators/eden 2>/dev/null
 
 mkdir /userdata/system/configs 2>/dev/null
 mkdir /userdata/system/configs/evmapy 2>/dev/null
@@ -231,6 +232,8 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/yuzu
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/sudachi.png" "$url/sudachi.png"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citron.png" "$url/citron.png"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-config-citron" "$url/batocera-config-citron"
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/eden.png" "$url/eden.png"
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/batocera-config-eden" "$url/batocera-config-eden"
 
 # -------------------------------------------------------------------- 
 # + get default config file: 
@@ -246,6 +249,11 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/ryuj
 path=/userdata/system/switch/configgen/generators/citron
 url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/configgen/generators/citron
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citronGenerator.py" "$url/citronGenerator.py"
+# -------------------------------------------------------------------- 
+# FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/GENERATORS/EDEN
+path=/userdata/system/switch/configgen/generators/eden
+url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/configgen/generators/eden
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/edenGenerator.py" "$url/edenGenerator.py"
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/GENERATORS/SUDACHI
 path=/userdata/system/switch/configgen/generators/sudachi

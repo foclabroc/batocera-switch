@@ -171,6 +171,10 @@ f=$extra/$Name.desktop
 rm -rf "$f" 2>/dev/null
    echo "[Desktop Entry]" >> "$f"
    echo "Version=1.0" >> "$f"
+      if [[ "$Name" = "eden" ]]; then 
+         echo "Icon=/userdata/system/switch/extra/eden.png" >> "$f"
+         echo 'Exec=/userdata/system/switch/extra/batocera-config-eden' >> "$f" 
+         fi
       if [[ "$Name" = "citron" ]]; then 
          echo "Icon=/userdata/system/switch/extra/citron.png" >> "$f"
          echo 'Exec=/userdata/system/switch/extra/batocera-config-citron' >> "$f" 
@@ -197,6 +201,9 @@ rm -rf "$f" 2>/dev/null
       if [[ "$Name" = "yuzuEA" ]]; then 
          echo "Name=YuzuEA-config" >> "$f"
          fi
+      if [[ "$Name" = "eden" ]]; then 
+         echo "Name=Eden-config" >> "$f"
+         fi
       if [[ "$Name" = "citron" ]]; then 
          echo "Name=Citron-config" >> "$f"
          fi
@@ -222,6 +229,7 @@ rm -rf "$f" 2>/dev/null
 # -----------------------------------------------------------------
 #
 # remove old version dekstop shortcuts from ~/.local/share/applications 
+rm /userdata/system/.local/share/applications/eden-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/yuzu-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/yuzuEA-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/citron-config.desktop 2>/dev/null
@@ -232,6 +240,7 @@ rm /userdata/system/.local/share/applications/ryujinxavalonia-config.desktop 2>/
 rm /userdata/system/.local/share/applications/Ryujinx-Avalonia-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/ryujinxldn-config.desktop 2>/dev/null
 # remove old version dekstop shortcuts from /usr/share/applications:
+rm /usr/share/applications/eden-config.desktop 2>/dev/null
 rm /usr/share/applications/citron-config.desktop 2>/dev/null
 rm /usr/share/applications/sudachi-config.desktop 2>/dev/null
 rm /usr/share/applications/yuzu-config.desktop 2>/dev/null
@@ -246,6 +255,7 @@ rm /usr/share/applications/ryujinxavalonia-config.desktop 2>/dev/null
 rm /usr/share/applications/Ryujinx-Avalonia-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinxldn-config.desktop 2>/dev/null
 # generate new desktop shortcuts: 
+generate-shortcut-launcher 'eden' 'eden'
 generate-shortcut-launcher 'citron' 'citron'
 generate-shortcut-launcher 'Ryujinx' 'ryujinx'
 generate-shortcut-launcher 'sudachi' 'sudachi'
@@ -1595,7 +1605,10 @@ echo -e "${W}SWITCH UPDATER FOR BATOCER\\"
 echo
 echo -e "${R}       ${W}/${R}/${W}\\\\${R}/      "
 sleep 0.1111
-# -------------------------
+
+# --------------------------------------------------------------------------------------------------------------------------------
+#-----CITRON----------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
 clear
 echo -e "${W}INSTALL WITH LOCAL APPIMAGE (/system/switch/appimages/) OTHERWISE DOWNLOAD IT ONLINE WAIT 1 TO 5 MINUTES!!"
 mkdir /userdata/system/switch/appimages 2>/dev/null
@@ -1609,7 +1622,7 @@ else
         if [ -f "$citronE" ] && [ $(stat -c%s "$citronE") -gt 2048 ]; then
 		   echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.6.1/ ${GREEN}SUCCESS";
 		else
-		   rm /userdata/system/switch/appimages/citron0.6.1AppImage 2>/dev/null
+		   rm /userdata/system/switch/appimages/citron0.6.1.AppImage 2>/dev/null
 		   echo -e "${T}CITRON   [${W}!!${T}] download fail put citron0.6.1.AppImage in (/system/switch/appimages) then relaunch script"; fi
 
 chmod 777 /userdata/system/switch/*.AppImage 2>/dev/null
@@ -1625,6 +1638,26 @@ rm /userdata/system/switch/appimages/citron0.6.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.zip 2>/dev/null
 rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
+
+# --------------------------------------------------------------------------------------------------------------------------------
+#-----EDEN------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
+version=$(curl -s https://api.github.com/repos/eden-emulator/Releases/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
+wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/eden-${version}-amd64.AppImage" "https://github.com/eden-emulator/Releases/releases/download/${version}/Eden-Linux-${version}-amd64.AppImage"
+link_Eden=/userdata/system/switch/eden-${version}-amd64.AppImage
+if [ -f "$link_Eden" ]; then
+    if [ "$(stat -c%s "$link_Eden")" -gt 2048 ]; then
+        echo -e "${T}EDEN   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
+    else
+        rm -f "$link_Eden" 2>/dev/null
+        echo -e "${T}EDEN   ${RED}FAIL TO DOWNLOAD LAST EDEN RELEASE"
+    fi
+else
+    echo -e "${T}EDEN   ${RED}DOWNLOAD FAILED — URL INTROUVABLE"
+fi
+# --------------------------------------------------------------------------------------------------------------------------------
+#-----SUDACHI---------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
 
 suda="/userdata/system/switch/appimages/sudachi1.0.14.AppImage"
 if [ -f "$suda" ]; then
