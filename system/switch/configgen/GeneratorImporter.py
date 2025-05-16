@@ -10,6 +10,10 @@ if TYPE_CHECKING:
 
 def getGenerator(emulator: str) -> Generator:
 
+    if emulator == 'eden':
+        from generators.eden.edenGenerator import EdenGenerator
+        return EdenGenerator()
+
     if emulator == 'citron':
         from generators.citron.citronGenerator import CitronGenerator
         return CitronGenerator()
