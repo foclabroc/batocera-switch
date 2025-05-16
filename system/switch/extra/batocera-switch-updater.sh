@@ -767,7 +767,7 @@ if [ -f "$link_yuzuEA" ]; then
 		  echo -e "${T}YUZU-EA   [${W}!!${T}] download fail put yuzuea4176.AppImage in (/system/switch/appimages) then relaunch script"    	
 		  rm /userdata/system/switch/appimages/yuzuea4176.AppImage 2>/dev/null
 	   else
-		  echo -e "${T}YUZU-EA   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
+		  echo -e "${T}YUZU-EA   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 		  rm -rf $temp/yuzuea 2>/dev/null
 		  mkdir $temp/yuzuea 2>/dev/null
 		  cd $temp/yuzuea
@@ -898,7 +898,7 @@ link_tarR="/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar
 if [ "$N" = "1" ]; then C=""; else C="$E/$N"; fi
 if [ -f "$link_ryujinx" ]; then
     if [ -f "$link_ryujinx" ] && [ $(stat -c%s "$link_ryujinx") -gt 2048 ]; then
-	      echo -e "${T}RYUJINX   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
+	      echo -e "${T}RYUJINX   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 	        else
 	          if [ -f "$link_tarR" ]; then
 	            cp /userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
@@ -1084,7 +1084,7 @@ if [ -f "$link_ryujinxavalonia" ]; then
 		else
 #		  if [[ "$(echo "$link_ryujinxavalonia" | grep "382")" != "" ]]; then version="382"; fi
 #		  version=$(echo "$version" | sed 's,1\.1\.,,g')
-		  echo -e "${T}RYUJINX-AVALONIA   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
+		  echo -e "${T}RYUJINX-AVALONIA   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 # --------------------------------------------------------
 # \\ get dependencies for handling ryujinxavalonia
 		  link_tar=https://github.com/foclabroc/batocera-switch/raw/main/system/switch/extra/batocera-switch-tar
@@ -1643,11 +1643,11 @@ rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
 #-----EDEN------------------------------------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------------------------------
 version=$(curl -s https://api.github.com/repos/eden-emulator/Releases/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
-wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/eden-${version}-amd64.AppImage" "https://github.com/eden-emulator/Releases/releases/download/${version}/Eden-Linux-${version}-amd64.AppImage"
-link_Eden=/userdata/system/switch/eden-${version}-amd64.AppImage
+wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/eden.AppImage" "https://github.com/eden-emulator/Releases/releases/download/${version}/Eden-Linux-${version}-amd64.AppImage"
+link_Eden=/userdata/system/switch/eden.AppImage
 if [ -f "$link_Eden" ]; then
     if [ "$(stat -c%s "$link_Eden")" -gt 2048 ]; then
-        echo -e "${T}EDEN   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
+        echo -e "${T}EDEN   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
     else
         rm -f "$link_Eden" 2>/dev/null
         echo -e "${T}EDEN   ${RED}FAIL TO DOWNLOAD LAST EDEN RELEASE"
@@ -1655,6 +1655,7 @@ if [ -f "$link_Eden" ]; then
 else
     echo -e "${T}EDEN   ${RED}DOWNLOAD FAILED — URL INTROUVABLE"
 fi
+echo
 # --------------------------------------------------------------------------------------------------------------------------------
 #-----SUDACHI---------------------------------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------------------------------
