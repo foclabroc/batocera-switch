@@ -2190,20 +2190,22 @@ url_portsupdaterkeys=https://raw.githubusercontent.com/foclabroc/batocera-switch
    ###curl -sSf "$url_updater" -o "/userdata/system/switch/extra/batocera-switch-updater.sh"
    dos2unix "/userdata/system/switch/extra/batocera-switch-updater.sh" 2>/dev/null
    chmod a+x "/userdata/system/switch/extra/batocera-switch-updater.sh" 2>/dev/null
-   # update ports Switch Updater.sh
-   wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/roms/ports/Switch Updater.sh" "$url_portsupdater"
-   ###curl -sSf "$url_portsupdater" -o "/userdata/roms/ports/Switch Updater.sh"
-   dos2unix "/userdata/system/roms/ports/Switch Updater.sh" 2>/dev/null
-   chmod a+x "/userdata/system/roms/ports/Switch Updater.sh" 2>/dev/null
-   # update ports Switch Updater.sh.keys
-   wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/roms/ports/Switch Updater.sh.keys" "$url_portsupdaterkeys"
-   ###curl -sSf "$url_portsupdaterkeys" -o "/userdata/roms/ports/Switch Updater.sh.keys"
-   dos2unix "/userdata/system/roms/ports/Switch Updater.sh.keys" 2>/dev/null
+   # # update ports Switch Updater.sh
+   # wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/roms/ports/Switch Updater.sh" "$url_portsupdater"
+   # ###curl -sSf "$url_portsupdater" -o "/userdata/roms/ports/Switch Updater.sh"
+   # dos2unix "/userdata/system/roms/ports/Switch Updater.sh" 2>/dev/null
+   # chmod a+x "/userdata/system/roms/ports/Switch Updater.sh" 2>/dev/null
+   # # update ports Switch Updater.sh.keys
+   # wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/roms/ports/Switch Updater.sh.keys" "$url_portsupdaterkeys"
+   # ###curl -sSf "$url_portsupdaterkeys" -o "/userdata/roms/ports/Switch Updater.sh.keys"
+   # dos2unix "/userdata/system/roms/ports/Switch Updater.sh.keys" 2>/dev/null
    # get batocera-switch-patcher.sh 
    wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/batocera-switch-patcher.sh" "$url_patcher"
    ###curl -sSf "$url_patcher" -o "/userdata/system/switch/extra/batocera-switch-patcher.sh"
    dos2unix "/userdata/system/switch/extra/batocera-switch-patcher.sh" 2>/dev/null
    chmod a+x "/userdata/system/switch/extra/batocera-switch-patcher.sh" 2>/dev/null
+
+   
 # --------------------------------------------------------------------
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/SDL2
@@ -2473,6 +2475,8 @@ rm /userdata/system/switch/extra/ryujinxavalonia/libSDL2.so 2>/dev/null
 rm /userdata/system/switch/appimages/ryujinxava1403.tar.gz 2>/dev/null
 rm "/userdata/roms/ports/Switch Updater40.sh.keys" 2>/dev/null
 rm "/userdata/roms/ports/Switch Updater40.sh" 2>/dev/null
+rm -f "/userdata/roms/ports/Switch Updater.sh.keys" 2>/dev/null
+rm -f "/userdata/roms/ports/Switch Updater.sh" 2>/dev/null
 cp /userdata/system/switch/extra/sdl/libSDL2.so /userdata/system/switch/extra/ryujinxavalonia/libSDL2.so 2>/dev/null
 wait
    # --- \ restore user config file for the updater if running clean install/update from the switch installer 

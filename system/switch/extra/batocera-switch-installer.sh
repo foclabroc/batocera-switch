@@ -297,18 +297,22 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/swit
 # FILL /USERDATA/ROMS/PORTS 
 path=/userdata/roms/ports 
 url=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/roms/ports
-wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater.sh" "$url/Switch Updater.sh"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Sudachi Qlauncher.sh" "$url/Sudachi Qlauncher.sh"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Sudachi Qlauncher.sh.keys" "$url/Sudachi Qlauncher.sh.keys"
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/ROMS/PORTS/IMAGES 
-path=/userdata/roms/ports/images
-url=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/roms/ports/images
-wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-boxart.png" "$url/Switch Updater-boxart.png"
-wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-cartridge.png" "$url/Switch Updater-cartridge.png"
-wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-mix.png" "$url/Switch Updater-mix.png"
-wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-screenshot.png" "$url/Switch Updater-screenshot.png"
-wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-wheel.png" "$url/Switch Updater-wheel.png"
+# path=/userdata/roms/ports/images
+# url=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/roms/ports/images
+# wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-boxart.png" "$url/Switch Updater-boxart.png"
+# wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-cartridge.png" "$url/Switch Updater-cartridge.png"
+# wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-mix.png" "$url/Switch Updater-mix.png"
+# wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-screenshot.png" "$url/Switch Updater-screenshot.png"
+# wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/Switch Updater-wheel.png" "$url/Switch Updater-wheel.png"
+rm -f "/userdata/roms/ports/images/Switch Updater-boxart.png"
+rm -f "/userdata/roms/ports/images/Switch Updater-cartridge.png"
+rm -f "/userdata/roms/ports/images/Switch Updater-mix.png"
+rm -f "/userdata/roms/ports/images/Switch Updater-screenshot.png"
+rm -f "/userdata/roms/ports/images/Switch Updater-wheel.png"
 # -------------------------------------------------------------------- 
 # # FILL /USERDATA/SYSTEM/.LOCAL/SHARE/APPLICATIONS
 # path=/userdata/system/.local/share/applications
