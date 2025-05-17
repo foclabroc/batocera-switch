@@ -1626,7 +1626,7 @@ chmod 777 /userdata/system/switch/sudachi.AppImage 2>/dev/null
 rm -rf /userdata/system/switch/sudachi 2>/dev/null
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/citronlaunch.AppImage" "https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/citronlaunch.AppImage"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/sudachilaunch.AppImage" "https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/sudachilaunch.AppImage"
-wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/sudachilaunch.AppImage" "https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/edenlaunch.AppImage"
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/edenlaunch.AppImage" "https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/edenlaunch.AppImage"
 echo
 # -------------------------
 links=/userdata/system/switch/extra/links
