@@ -250,7 +250,7 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citr
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/GENERATORS/EDEN
 path=/userdata/system/switch/configgen/generators/eden
-url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/configgen/generators/eden
+url=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/eden
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/edenGenerator.py" "$url/edenGenerator.py"
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/GENERATORS/SUDACHI
@@ -260,7 +260,7 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/suda
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/GENERATORS/YUZU
 path=/userdata/system/switch/configgen/generators/yuzu
-url=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/configgen/generators/yuzu
+url=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/yuzu
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/__init__.py" "$url/__init__.py"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/yuzuMainlineGenerator.py" "$url/yuzuMainlineGenerator.py"
 # -------------------------------------------------------------------- 
