@@ -170,6 +170,10 @@ f=$extra/$Name.desktop
 rm -rf "$f" 2>/dev/null
    echo "[Desktop Entry]" >> "$f"
    echo "Version=1.0" >> "$f"
+      if [[ "$Name" = "eden" ]]; then 
+         echo "Icon=/userdata/system/switch/extra/eden.png" >> "$f"
+         echo 'Exec=/userdata/system/switch/extra/batocera-config-eden' >> "$f" 
+         fi
       if [[ "$Name" = "citron" ]]; then 
          echo "Icon=/userdata/system/switch/extra/citron.png" >> "$f"
          echo 'Exec=/userdata/system/switch/extra/batocera-config-citron' >> "$f" 
@@ -191,6 +195,9 @@ rm -rf "$f" 2>/dev/null
    echo "Categories=Game;batocera.linux;" >> "$f"
       if [[ "$Name" = "yuzuEA" ]]; then 
          echo "Name=YuzuEA-config" >> "$f"
+         fi
+      if [[ "$Name" = "eden" ]]; then 
+         echo "Name=Eden-config" >> "$f"
          fi
       if [[ "$Name" = "citron" ]]; then 
          echo "Name=Citron-config" >> "$f"
@@ -214,6 +221,7 @@ rm -rf "$f" 2>/dev/null
 # -----------------------------------------------------------------
 #
 # remove old version dekstop shortcuts from ~/.local/share/applications 
+rm /userdata/system/.local/share/applications/eden-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/yuzu-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/yuzuEA-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/citron-config.desktop 2>/dev/null
@@ -222,6 +230,7 @@ rm /userdata/system/.local/share/applications/ryujinx-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/ryujinxavalonia-config.desktop 2>/dev/null
 rm /userdata/system/.local/share/applications/ryujinxldn-config.desktop 2>/dev/null
 # remove old version dekstop shortcuts from /usr/share/applications:
+rm /usr/share/applications/eden-config.desktop 2>/dev/null
 rm /usr/share/applications/citron-config.desktop 2>/dev/null
 rm /usr/share/applications/sudachi-config.desktop 2>/dev/null
 rm /usr/share/applications/yuzu-config.desktop 2>/dev/null
@@ -235,6 +244,7 @@ rm /usr/share/applications/ryujinx-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinxavalonia-config.desktop 2>/dev/null
 rm /usr/share/applications/ryujinxldn-config.desktop 2>/dev/null
 # generate new desktop shortcuts: 
+generate-shortcut-launcher 'eden' 'eden'
 generate-shortcut-launcher 'citron' 'citron'
 generate-shortcut-launcher 'Ryujinx' 'ryujinx'
 generate-shortcut-launcher 'sudachi' 'sudachi'
@@ -745,7 +755,7 @@ if [ -f "$link_yuzuEA" ]; then
 		  echo -e "${T}YUZU-EA   [${W}!!${T}] download fail put yuzuea4176.AppImage in (/system/switch/appimages) then relaunch script"    	
 		  rm /userdata/system/switch/appimages/yuzuea4176.AppImage 2>/dev/null
 	   else
-		  echo -e "${T}YUZU-EA   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
+		  echo -e "${T}YUZU-EA   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 # make launcher
 		  f=/userdata/system/switch/extra/yuzuEAlaunch.AppImage
 		  rm "$f" 2>/dev/null
@@ -839,7 +849,7 @@ link_tarR="/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar
 if [ "$N" = "1" ]; then C=""; else C="$E/$N"; fi
 if [ -f "$link_ryujinx" ]; then
     if [ -f "$link_ryujinx" ] && [ $(stat -c%s "$link_ryujinx") -gt 2048 ]; then
-	      echo -e "${T}RYUJINX   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
+	      echo -e "${T}RYUJINX   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 	        else
 	          if [ -f "$link_tarR" ]; then
 	            cp /userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
@@ -1546,7 +1556,10 @@ echo -e "${W}SWITCH UPDATER FOR BATOCER\\"
 echo
 echo -e "${R}       ${W}/${R}/${W}\\\\${R}/      "
 sleep 0.1111
-# -------------------------
+
+# --------------------------------------------------------------------------------------------------------------------------------
+#-----CITRON----------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
 clear
 echo -e "${W}INSTALL WITH LOCAL APPIMAGE (/system/switch/appimages/) OTHERWISE DOWNLOAD IT ONLINE WAIT 1 TO 5 MINUTES!!"
 mkdir /userdata/system/switch/appimages 2>/dev/null
@@ -1560,7 +1573,7 @@ else
         if [ -f "$citronE" ] && [ $(stat -c%s "$citronE") -gt 2048 ]; then
 		   echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.6.1/ ${GREEN}SUCCESS";
 		else
-		   rm /userdata/system/switch/appimages/citron0.6.1AppImage 2>/dev/null
+		   rm /userdata/system/switch/appimages/citron0.6.1.AppImage 2>/dev/null
 		   echo -e "${T}CITRON   [${W}!!${T}] download fail put citron0.6.1.AppImage in (/system/switch/appimages) then relaunch script"; fi
 
 chmod 777 /userdata/system/switch/*.AppImage 2>/dev/null
@@ -1577,6 +1590,26 @@ rm /userdata/system/switch/appimages/sudachi.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.zip 2>/dev/null
 rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
 
+# --------------------------------------------------------------------------------------------------------------------------------
+#-----EDEN------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
+version=$(curl -s https://api.github.com/repos/eden-emulator/Releases/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
+wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/eden.AppImage" "https://github.com/eden-emulator/Releases/releases/download/${version}/Eden-Linux-${version}-amd64.AppImage"
+link_Eden=/userdata/system/switch/eden.AppImage
+if [ -f "$link_Eden" ]; then
+    if [ "$(stat -c%s "$link_Eden")" -gt 2048 ]; then
+        echo -e "${T}EDEN   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
+    else
+        rm -f "$link_Eden" 2>/dev/null
+        echo -e "${T}EDEN   ${RED}FAIL TO DOWNLOAD LAST EDEN RELEASE"
+    fi
+else
+    echo -e "${T}EDEN   ${RED}DOWNLOAD FAILED — URL INTROUVABLE"
+fi
+echo
+# --------------------------------------------------------------------------------------------------------------------------------
+#-----SUDACHI---------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
 suda="/userdata/system/switch/appimages/sudachi1.0.14.AppImage"
 if [ -f "$suda" ]; then
     cp /userdata/system/switch/appimages/sudachi1.0.14.AppImage /userdata/system/switch/sudachi.AppImage 2>/dev/null;
@@ -1593,6 +1626,7 @@ chmod 777 /userdata/system/switch/sudachi.AppImage 2>/dev/null
 rm -rf /userdata/system/switch/sudachi 2>/dev/null
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/citronlaunch.AppImage" "https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/citronlaunch.AppImage"
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/sudachilaunch.AppImage" "https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/sudachilaunch.AppImage"
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/sudachilaunch.AppImage" "https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/edenlaunch.AppImage"
 echo
 # -------------------------
 links=/userdata/system/switch/extra/links
