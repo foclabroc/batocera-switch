@@ -1588,6 +1588,7 @@ rm /userdata/system/switch/appimages/citron0.5.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.6.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.zip 2>/dev/null
+rm /userdata/system/switch/appimages/sudachi1.0.14.zip 2>/dev/null
 rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
 
 # --------------------------------------------------------------------------------------------------------------------------------
@@ -1610,17 +1611,17 @@ echo
 # --------------------------------------------------------------------------------------------------------------------------------
 #-----SUDACHI---------------------------------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------------------------------
-suda="/userdata/system/switch/appimages/sudachi1.0.14.AppImage"
+suda="/userdata/system/switch/appimages/sudachi1.0.15.AppImage"
 if [ -f "$suda" ]; then
-    cp /userdata/system/switch/appimages/sudachi1.0.14.AppImage /userdata/system/switch/sudachi.AppImage 2>/dev/null;
+    cp /userdata/system/switch/appimages/sudachi1.0.15.AppImage /userdata/system/switch/sudachi.AppImage 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/sudachi1.0.14.AppImage" "https://foclabroc.freeboxos.fr:55973/share/EnGhjDVvv18KJGvz/sudachi1.0.14.AppImage"
-    cp /userdata/system/switch/appimages/sudachi1.0.14.AppImage /userdata/system/switch/sudachi.AppImage 2>/dev/null; fi
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/sudachi1.0.15.AppImage" "https://foclabroc.freeboxos.fr:55973/share/DGShvnW60JL5-oAD/sudachi1.0.15.AppImage"
+    cp /userdata/system/switch/appimages/sudachi1.0.15.AppImage /userdata/system/switch/sudachi.AppImage 2>/dev/null; fi
         if [ -f "$suda" ] && [ $(stat -c%s "$suda") -gt 2048 ]; then
-		   echo -e "${T}SUDACHI   ${T}❯❯   ${T}/V1.0.14/ ${GREEN}SUCCESS";
+		   echo -e "${T}SUDACHI   ${T}❯❯   ${T}/V1.0.15/ ${GREEN}SUCCESS";
 		else
-		   rm /userdata/system/switch/appimages/sudachi1.0.14.AppImage 2>/dev/null
-		   echo -e "${T}SUDACHI   [${W}!!${T}] download fail put sudachi1.0.14.AppImage in (/system/switch/appimages) then relaunch script"; fi
+		   rm /userdata/system/switch/appimages/sudachi1.0.15.AppImage 2>/dev/null
+		   echo -e "${T}SUDACHI   [${W}!!${T}] download fail put sudachi1.0.15.AppImage in (/system/switch/appimages) then relaunch script"; fi
 
 chmod 777 /userdata/system/switch/sudachi.AppImage 2>/dev/null
 rm -rf /userdata/system/switch/sudachi 2>/dev/null
