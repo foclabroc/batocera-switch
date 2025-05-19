@@ -1588,7 +1588,9 @@ rm /userdata/system/switch/appimages/citron0.5.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.6.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.zip 2>/dev/null
-rm /userdata/system/switch/appimages/sudachi1.0.14.zip 2>/dev/null
+rm /userdata/system/switch/appimages/sudachi1.0.12.AppImage 2>/dev/null
+rm /userdata/system/switch/appimages/sudachi1.0.13.AppImage 2>/dev/null
+rm /userdata/system/switch/appimages/sudachi1.0.14.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
 
 # --------------------------------------------------------------------------------------------------------------------------------
