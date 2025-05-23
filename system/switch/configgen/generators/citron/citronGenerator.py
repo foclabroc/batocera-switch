@@ -52,6 +52,47 @@ class CitronGenerator(Generator):
         if not os.path.exists(batoceraFiles.CONF + "/yuzu/keys"):
             os.mkdir(batoceraFiles.CONF + "/yuzu/keys")
 
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/amiibo"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/amiibo")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/crash_dumps"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/crash_dumps")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/custom"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/custom")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/dump"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/dump")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/game_list"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/game_list")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/icons"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/icons")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/load"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/load")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/log"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/log")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/nand"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/nand")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/play_time"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/play_time")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/screenshots"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/screenshots")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/sdmc"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/sdmc")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/shader"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/shader")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/tas"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/tas")
         #Create OS Saves folder
         if not os.path.exists(batoceraFiles.SAVES + "/yuzu"):
             os.mkdir(batoceraFiles.SAVES + "/yuzu")        
