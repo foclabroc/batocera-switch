@@ -8,7 +8,7 @@
 #  ---------------
 #     SETTINGS 
 #  ---------------
-#
+# Please update the emulator Ryujinx => https://ryujinx.app/download
 EMULATORS="YUZUEA RYUJINX RYUJINXAVALONIA" 
 #        |
 #        default: "YUZU YUZUEA RYUJINX RYUJINXLDN RYUJINXAVALONIA"
