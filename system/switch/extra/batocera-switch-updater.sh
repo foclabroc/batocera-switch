@@ -841,8 +841,8 @@ T=$THEME_COLOR_RYUJINX
 	       # rm /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
 	# fi
 rm /userdata/system/switch/appimages/ryujinx-1.2.81-linux_x64.tar.gz 2>/dev/null
-version=$(curl -s https://api.github.com/repos/iurehg8uetgyh8ui5e/cr/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
-wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz" "https://github.com/iurehg8uetgyh8ui5e/cr/releases/download/$version/ryujinx-canary-${version}-linux_x64.tar.gz"
+version=$(curl -s https://git.ryujinx.app/ryubing/canary/-/releases | grep -oP '/ryubing/canary/-/releases/tag/\K[^"]+' | head -n 1)
+wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz" "https://git.ryujinx.app/ryubing/canary/-/releases/${version}/downloads/ryujinx-canary-${version}-linux_x64.tar.gz"
 link_ryujinx=/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz
 link_tarR="/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz"
 # --------------------------------------------------------
