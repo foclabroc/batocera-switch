@@ -478,6 +478,13 @@ class EdenGenerator(Generator):
             yuzuConfig.set("System", "use_docked_mode", "1")
             yuzuConfig.set("System", "use_docked_mode\\default", "true")
 
+    # Applet section
+        if not yuzuConfig.has_section("LibraryApplet"):
+            yuzuConfig.add_section("LibraryApplet")
+        yuzuConfig.set("LibraryApplet", "swkbd_applet_mode", "0")
+        yuzuConfig.set("LibraryApplet", "swkbd_applet_mode\\default", "false")
+
+
     # controls section
         if not yuzuConfig.has_section("Controls"):
             yuzuConfig.add_section("Controls")
