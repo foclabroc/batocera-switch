@@ -890,7 +890,7 @@ T=$THEME_COLOR_RYUJINX
 	       # rm /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
 	# fi
 rm /userdata/system/switch/appimages/ryujinx-1.2.81-linux_x64.tar.gz 2>/dev/null
-version=$(curl -s "https://git.ryujinx.app/api/v4/projects/68/packages" \
+version=$(curl -s "https://git.ryujinx.app/ryubing/canary/-/releases" \
   | grep -oP '"version":"\K[0-9]+\.[0-9]+\.[0-9]+' \
   | sort -V \
   | tail -n 1)
