@@ -891,7 +891,7 @@ T=$THEME_COLOR_RYUJINX
 	# fi
 rm /userdata/system/switch/appimages/ryujinx-1.2.81-linux_x64.tar.gz 2>/dev/null
 version=$(curl -s "https://git.ryujinx.app/ryubing/canary/-/releases" \
-  | grep -oP '"version":"\K[0-9]+\.[0-9]+\.[0-9]+' \
+  | grep -oP '/releases/download/Canary-\K[0-9]+\.[0-9]+\.[0-9]+' \
   | sort -V \
   | tail -n 1)
 wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz" "https://git.ryujinx.app/api/v4/projects/68/packages/generic/Ryubing-Canary/${version}/ryujinx-canary-${version}-linux_x64.tar.gz"
