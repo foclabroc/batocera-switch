@@ -1115,26 +1115,28 @@ fi
 ##
 if [ "$3" = "RYUJINX" ]; then
 T=$THEME_COLOR_RYUJINX
-version=$(curl -s "https://git.ryujinx.app/api/v4/projects/68/packages" \
-  | grep -oP '"version":"\K[0-9]+\.[0-9]+\.[0-9]+' \
-  | sort -V \
-  | tail -n 1)
+html=$(curl -s "https://release-monitoring.org/project/377871/")
+version=$(echo "$html" |
+  grep -Eo 'Canary-[0-9]+\.[0-9]+\.[0-9]+' |
+  head -n1 |
+  cut -d'-' -f2
+)
 wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz" "https://git.ryujinx.app/api/v4/projects/68/packages/generic/Ryubing-Canary/${version}/ryujinx-canary-${version}-linux_x64.tar.gz"
 link_ryujinx=/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz
-link_tarR="/userdata/system/switch/appimages/ryujinx1.2.67.tar.gz"
+link_tarR="/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz"
 # --------------------------------------------------------
 if [ "$N" = "1" ]; then C=""; else C="$E/$N"; fi
 if [ -f "$link_ryujinx" ]; then
     if [ -f "$link_ryujinx" ] && [ $(stat -c%s "$link_ryujinx") -gt 2048 ]; then
-	      echo -e "${T}RYUJINX   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
+	      echo -e "${T}RYUJINX RYUBING   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 	        else
 	          if [ -f "$link_tarR" ]; then
-	            cp /userdata/system/switch/appimages/ryujinx1.2.67.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
-			    echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST GREEMDEV USE 1.2.67 BACKUP INSTEAD   ${T}/1.2.67/ ${GREEN}SUCCESS";
+	            cp /userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
+			    echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST GREEMDEV USE 1.2.96 BACKUP INSTEAD   ${T}/1.2.96/ ${GREEN}SUCCESS";
 		      else
-	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx1.2.67.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/akEmBYUV19PJglYs/ryujinx1.2.67.tar.gz"
-                cp /userdata/system/switch/appimages/ryujinx1.2.67.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
-	            echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST GREEMDEV USE 1.2.67 INSTEAD   ${T}/1.2.67/ ${GREEN}SUCCESS";
+	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/tGbwP0xLt1KcKXYS/ryujinx-canary-1.2.96-linux_x64.tar.gz"
+                cp /userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
+	            echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST GREEMDEV USE 1.2.96 INSTEAD   ${T}/1.2.96/ ${GREEN}SUCCESS";
 			  fi
 	fi
 # --------------------------------------------------------
