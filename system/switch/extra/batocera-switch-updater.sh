@@ -841,10 +841,12 @@ T=$THEME_COLOR_RYUJINX
 	       # rm /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
 	# fi
 rm /userdata/system/switch/appimages/ryujinx-1.2.81-linux_x64.tar.gz 2>/dev/null
-version=$(curl -s "https://git.ryujinx.app/api/v4/projects/68/packages" \
-  | grep -oP '"version":"\K[0-9]+\.[0-9]+\.[0-9]+' \
-  | sort -V \
-  | tail -n 1)
+html=$(curl -s "https://release-monitoring.org/project/377871/")
+version=$(echo "$html" |
+  grep -Eo 'Canary-[0-9]+\.[0-9]+\.[0-9]+' |
+  head -n1 |
+  cut -d'-' -f2
+)
 wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz" "https://git.ryujinx.app/api/v4/projects/68/packages/generic/Ryubing-Canary/${version}/ryujinx-canary-${version}-linux_x64.tar.gz"
 link_ryujinx=/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz
 link_tarR="/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz"
@@ -852,7 +854,7 @@ link_tarR="/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar
 if [ "$N" = "1" ]; then C=""; else C="$E/$N"; fi
 if [ -f "$link_ryujinx" ]; then
     if [ -f "$link_ryujinx" ] && [ $(stat -c%s "$link_ryujinx") -gt 2048 ]; then
-	      echo -e "${T}RYUJINX   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
+	      echo -e "${T}RYUJINX RYUBING   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 	        else
 	          if [ -f "$link_tarR" ]; then
 	            cp /userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
