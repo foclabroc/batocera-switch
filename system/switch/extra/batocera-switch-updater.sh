@@ -1652,7 +1652,7 @@ rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
 # --------------------------------------------------------------------------------------------------------------------------------
 #version=$(curl -s https://api.github.com/repos/eden-emulator/Releases/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
 version="0.0.2"
-wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/eden.AppImage" "https://github.com/eden-emulator/Releases/releases/download/0.0.2-pre-alpha/Eden-Linux-0.0.2-pre-alpha-amd64.AppImage"
+wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/eden.AppImage" "https://github.com/eden-emulator/Releases/releases/download/v0.0.2-pre-alpha/Eden-Linux-0.0.2-pre-alpha-amd64.AppImage"
 link_Eden=/userdata/system/switch/eden.AppImage
 if [ -f "$link_Eden" ]; then
     if [ "$(stat -c%s "$link_Eden")" -gt 2048 ]; then
