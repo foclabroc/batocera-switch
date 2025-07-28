@@ -192,7 +192,9 @@ class EdenGenerator(Generator):
                  "DESKTOP_SESSION":"XFCE",
                  "QT_FONT_DPI":"96",
                  "QT_SCALE_FACTOR":"1",
-                 "GDK_SCALE":"1"}
+                 "GDK_SCALE":"1",
+                 "USER":"root",
+                 "LANG":"en_US.UTF-8"}
             )
 
 
