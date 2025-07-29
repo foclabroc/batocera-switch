@@ -380,6 +380,7 @@ if [[ -e /userdata/system/switch/extra/installation ]]; then
     echo -e "   ${GREEN}Cette page se fermera automatiquement dans 10 secondes...${GREEN}"
     echo -e "   ${GREEN}This page will automatically close in 10 seconds...${X}"
     sleep 10
+    curl http://127.0.0.1:1234/reloadgames
     exit 0
 else
     clear 
