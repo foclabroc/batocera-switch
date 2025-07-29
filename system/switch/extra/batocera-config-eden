@@ -8,4 +8,4 @@ then
     export DISPLAY=:0.0
 fi
 
-XDG_CONFIG_HOME="/userdata/system/configs" XDG_DATA_HOME="/userdata/system/configs" XDG_CACHE_HOME="/userdata/system/configs" QT_QPA_PLATFORM_PLUGIN_PATH="${QT_PLUGIN_PATH}" QT_PLUGIN_PATH="/usr/lib/qt/plugins:/usr/plugins:${QT_PLUGIN_PATH}" QT_QPA_PLATFORM="xcb" /userdata/system/switch/eden.AppImage -platform xcb
+XDG_CONFIG_HOME="/userdata/system/configs" XDG_DATA_HOME="/userdata/system/configs" XDG_CACHE_HOME="/userdata/system/configs" QT_QPA_PLATFORM_PLUGIN_PATH="${QT_PLUGIN_PATH}" QT_PLUGIN_PATH="/usr/lib/qt/plugins:/usr/plugins:${QT_PLUGIN_PATH}" QT_QPA_PLATFORM="xcb" USER="root" /userdata/system/switch/eden.AppImage -platform xcb
