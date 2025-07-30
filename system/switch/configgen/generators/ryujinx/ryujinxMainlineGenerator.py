@@ -16,11 +16,7 @@ import subprocess
 from typing import TYPE_CHECKING, Final
 
 if TYPE_CHECKING:
-    from pathlib import Path
-
-    from ...controllersConfig import ControllerMapping
-    from ...Emulator import Emulator
-    from ...types import HotkeysContext
+    from configgen.types import HotkeysContext
 
 eslog = logging.getLogger(__name__)
 
