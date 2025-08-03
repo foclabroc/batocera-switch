@@ -1653,8 +1653,9 @@ rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
 # version=$(curl -s https://api.github.com/repos/pflyly/eden-nightly/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
 # #version="0.0.3.RC2"
 # wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/eden.AppImage" "https://github.com/eden-emulator/Releases/releases/download/v0.0.3-rc2/Eden-Linux-v0.0.3-rc2-amd64.AppImage"
-version=$(curl -s https://api.github.com/repos/pflyly/eden-nightly/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
-url=$(curl -s https://api.github.com/repos/pflyly/eden-nightly/releases/latest | grep -oP '(?<="browser_download_url": ")[^"]*Eden.*x86_64\.AppImage')
+tag=$(curl -s https://api.github.com/repos/pflyly/eden-nightly/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
+build=$(echo "$tag" | grep -oP '\d{5}$')
+url="https://github.com/pflyly/eden-nightly/releases/download/$tag/Eden-${build}-Legacy-x86_64.AppImage"
 wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies \
   -O "/userdata/system/switch/eden.AppImage" "$url"
 link_Eden=/userdata/system/switch/eden.AppImage
