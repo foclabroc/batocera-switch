@@ -1660,7 +1660,7 @@ wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookie
 link_Eden=/userdata/system/switch/eden.AppImage
 if [ -f "$link_Eden" ]; then
     if [ "$(stat -c%s "$link_Eden")" -gt 2048 ]; then
-        echo -e "${T}EDEN   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
+        echo -e "${T}EDEN   ${T}❯❯   ${T}/$version/ ${GREEN}SUCCESS"
     else
         rm -f "$link_Eden" 2>/dev/null
         echo -e "${T}EDEN   ${RED}FAIL TO DOWNLOAD LAST EDEN RELEASE"
