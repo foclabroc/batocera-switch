@@ -987,7 +987,7 @@ if [ -f "$link_ryujinx" ]; then
 		  dos2unix "$f" 2>/dev/null; chmod a+x "$f" 2>/dev/null
 # --------------------------------------------------------
 # --------------------------------------------------------
-		  size_ryujinx=$(($(wc -c $path_ryujinx | awk '{print $1}')/1048576)) 2>/dev/null
+		  size_ryujinx=$(( $(wc -c < "$path_ryujinx" 2>/dev/null) / 1048576 ))
 		  #echo -e "${T}» ~/switch/Ryujinx.AppImage · ${T}$size_ryujinx( )MB   ${T}" | sed 's/( )//g'
 		  echo
 		  cd ~/
