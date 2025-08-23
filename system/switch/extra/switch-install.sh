@@ -18,17 +18,17 @@ case $version in
     39|40)
         echo "[Foclabroc Switch Installer] Déclenchement du script pour Batocera 39/40..."
         sleep 3
-        curl -L bit.ly/foclabroc-switchoff-40 | bash
+        curl -fsSL bit.ly/foclabroc-switchoff-40 | bash
         ;;
     41)
         echo "[Foclabroc Switch Installer] Déclenchement du script pour Batocera 41..."
         sleep 3
-        curl -L bit.ly/foclabroc-switchoff | bash
+        curl -fsSL bit.ly/foclabroc-switchoff | bash
         ;;
     42)
-        echo "[Foclabroc Switch Installer] Déclenchement du script pour Batocera 42+..."
+        echo "[Foclabroc Switch Installer] Déclenchement du script pour Batocera 42..."
         sleep 3
-        curl -L bit.ly/foclabroc-batswitch | bash
+        curl -fsSL bit.ly/foclabroc-batswitch | bash
         ;;
     *)
         echo "[Foclabroc Switch Installer] Version non prise en charge : $version"
