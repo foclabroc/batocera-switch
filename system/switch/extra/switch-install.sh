@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Récupération de la version principale de Batocera
-version=$(batocera-es-swissknife --version | awk '{print $1}' | grep -oE '^[0-9]+')
+version=$(batocera-es-swissknife --version | grep -oE '^[0-9]+')
 
 # Vérification que la version est bien un nombre
-if [[ -z "$version" || ! "$version" =~ ^[0-9]+$ ]]; then
+if [[ -z "$version" ]]; then
     dialog --msgbox "Impossible de détecter une version valide de Batocera. Installation annulée." 8 60
     clear
     exit 1
