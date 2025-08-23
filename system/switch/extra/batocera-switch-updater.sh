@@ -737,79 +737,68 @@ mkdir /userdata/system/switch/appimages 2>/dev/null
 ##
 # ---------------------------------------------------------------------------------- 
 if [ "$3" = "YUZUEA" ]; then
-T=$THEME_COLOR_YUZUEA
-cd /userdata/system/switch/appimages
-yuzuE="/userdata/system/switch/appimages/yuzuea4176.AppImage"
-if [ -f "$yuzuE" ]; then
-    cp /userdata/system/switch/appimages/yuzuea4176.AppImage /userdata/system/switch/yuzuEA.AppImage 2>/dev/null;
-else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/yuzuea4176.AppImage" "https://foclabroc.freeboxos.fr:55973/share/wFMuNBT3U8Wwa2x5/yuzuea4176.AppImage"
-    cp /userdata/system/switch/appimages/yuzuea4176.AppImage /userdata/system/switch/yuzuEA.AppImage 2>/dev/null; fi
-link_yuzuEA="/userdata/system/switch/yuzuEA.AppImage"
-version="4176"
-if [ "$N" = "1" ]; then C=""; else C="$E/$N"; fi
-if [ -f "$link_yuzuEA" ]; then	
-	checksum_file=$(md5sum $link_yuzuEA | awk '{print $1}')
-	checksum_verified="9f20b0e6bacd2eb9723637d078d463eb"
-	   if [[ "$checksum_file" != "$checksum_verified" ]]; then 
-		  echo -e "${T}YUZU-EA   [${W}!!${T}] download fail put yuzuea4176.AppImage in (/system/switch/appimages) then relaunch script"    	
-		  rm /userdata/system/switch/appimages/yuzuea4176.AppImage 2>/dev/null
-	   else
-		  echo -e "${T}YUZU-EA   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
+    T=$THEME_COLOR_YUZUEA
+    cd /userdata/system/switch/appimages
+    yuzuE="/userdata/system/switch/appimages/yuzuea4176.AppImage"
+    link_yuzuEA="/userdata/system/switch/yuzuEA.AppImage"
+    version="4176"
+    if [ ! -f "$yuzuE" ]; then
+        wget -q --show-progress --tries=10 --timeout=30 --waitretry=3 \
+            --no-check-certificate --no-cache --no-cookies \
+            -O "$yuzuE" "https://foclabroc.freeboxos.fr:55973/share/wFMuNBT3U8Wwa2x5/yuzuea4176.AppImage"
+    fi
+    if [ -f "$yuzuE" ]; then
+        cp "$yuzuE" "$link_yuzuEA" 2>/dev/null
+    fi
+    if [ -f "$link_yuzuEA" ]; then
+        echo -e "${T}YUZU-EA   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
+
 # make launcher
-		  f=/userdata/system/switch/extra/yuzuEAlaunch.AppImage
-		  rm "$f" 2>/dev/null
-		  echo '#!/bin/bash' >> "$f"
-
-		  echo 'export XDG_MENU_PREFIX=batocera-' >> "$f"
-		  echo 'export XDG_CONFIG_DIRS=/etc/xdg' >> "$f"
-		  echo 'export XDG_CURRENT_DESKTOP=XFCE' >> "$f"
-		  echo 'export DESKTOP_SESSION=XFCE' >> "$f"
-
-		  echo '/userdata/system/switch/extra/batocera-switch-mousemove.sh &' >> "$f" 
-		  echo '/userdata/system/switch/extra/batocera-switch-sync-firmware.sh' >> "$f" 
-		  echo '#cp /userdata/system/switch/extra/yuzuea/lib* /lib64/ 2>/dev/null' >> "$f" 
-		  echo 'if [ ! -L /userdata/system/configs/Ryujinx/bis/user/save ]; then mkdir /userdata/system/configs/Ryujinx/bis/user/save 2>/dev/null; rsync -au /userdata/saves/Ryujinx/ /userdata/system/configs/Ryujinx/bis/user/save/ 2>/dev/null; fi' >> "$f"
-		  echo 'if [ ! -L /userdata/system/configs/yuzu/nand/user/save ]; then mkdir /userdata/system/configs/yuzu/nand/user/save 2>/dev/null; rsync -au /userdata/saves/yuzu/ /userdata/system/configs/yuzu/nand/user/save/ 2>/dev/null; fi' >> "$f"
-		  echo 'mkdir -p /userdata/system/configs/yuzu/keys 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/configs/yuzu/keys/ 2>/dev/null ' >> "$f"
-		  echo 'mkdir -p /userdata/system/.local/share/yuzu/keys 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/.local/share/yuzu/keys/ 2>/dev/null ' >> "$f"
-		  echo 'mkdir -p /userdata/system/configs/Ryujinx/system 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/configs/Ryujinx/system/ 2>/dev/null ' >> "$f"
-		  echo 'rm /usr/bin/yuzu 2>/dev/null; rm /usr/bin/yuzu-room 2>/dev/null' >> "$f"
-
-		  echo 'mkdir -p /userdata/system/switch/logs 2>/dev/null ' >> "$f"
-		  echo 'log1=/userdata/system/switch/logs/yuzuEA-out.txt 2>/dev/null ' >> "$f"
-		  echo 'log2=/userdata/system/switch/logs/yuzuEA-err.txt 2>/dev/null ' >> "$f"
-		  echo 'rm $log1 2>/dev/null && rm $log2 2>/dev/null ' >> "$f"
-
-		  echo 'ulimit -H -n 819200; ulimit -S -n 819200; ulimit -S -n 819200 yuzu;' >> "$f"
-
-		  echo 'rom="$(echo "$@" | sed '\''s,-f -g ,,g'\'')" ' >> "$f"
-		  echo 'if [[ "$rom" = "" ]]; then ' >> "$f"
-		  echo '  /userdata/system/switch/yuzuEA.AppImage -f -g > >(tee "$log1") 2> >(tee "$log2" >&2) ' >> "$f" 
-		  echo 'else ' >> "$f"
-		  echo '  rm /tmp/switchromname 2>/dev/null ' >> "$f" 
-		  echo '    echo "$rom" >> /tmp/switchromname 2>/dev/null ' >> "$f" 
-		  echo '      /userdata/system/switch/extra/batocera-switch-nsz-converter.sh ' >> "$f" 
-		  echo '    rom="$(cat /tmp/switchromname)" ' >> "$f"
-		  echo '  fs=$(blkid | grep "$(df -h /userdata | awk '\''END {print $1}'\'')" | sed '\''s,^.*TYPE=,,g'\'' | sed '\''s,",,g'\'' | tr '\''a-z'\'' '\''A-Z'\'') ' >> "$f"
-		  echo '  if [[ "$fs" == *"EXT"* ]] || [[ "$fs" == *"BTR"* ]]; then ' >> "$f"
-		  echo '    rm /tmp/yuzurom 2>/dev/null; ln -sf "$rom" "/tmp/yuzurom"; ROM="/tmp/yuzurom"; ' >> "$f"
-		  echo '    /userdata/system/switch/yuzuEA.AppImage -f -g "$ROM" 1>"$log1" 2>"$log2" ' >> "$f"
-		  echo '  else ' >> "$f"
-		  echo '    ROM="$rom" ' >> "$f"
-		  echo '    /userdata/system/switch/yuzuEA.AppImage -f -g "$ROM" 1>"$log1" 2>"$log2" ' >> "$f"
-		  echo '  fi ' >> "$f"
-		  echo 'fi' >> "$f"
-
-		  dos2unix "$f" 2>/dev/null; chmod a+x "$f" 2>/dev/null
-		  echo
-		  cd ~/
-		  rm /userdata/system/switch/versionEA.txt 2>/dev/null
-		  echo $version >> /userdata/system/switch/extra/versionEA.txt
-		fi
-	else
-		echo -e "${T}██ ${C}   ${F}YUZU-EA   [${W}!!${T}]   place yuzuEA.AppImage in /userdata/system/switch/"	
-	fi	
+		f=/userdata/system/switch/extra/yuzuEAlaunch.AppImage
+		rm "$f" 2>/dev/null
+		echo '#!/bin/bash' >> "$f"
+		echo 'export XDG_MENU_PREFIX=batocera-' >> "$f"
+		echo 'export XDG_CONFIG_DIRS=/etc/xdg' >> "$f"
+		echo 'export XDG_CURRENT_DESKTOP=XFCE' >> "$f"
+		echo 'export DESKTOP_SESSION=XFCE' >> "$f"
+		echo '/userdata/system/switch/extra/batocera-switch-mousemove.sh &' >> "$f" 
+		echo '/userdata/system/switch/extra/batocera-switch-sync-firmware.sh' >> "$f" 
+		echo '#cp /userdata/system/switch/extra/yuzuea/lib* /lib64/ 2>/dev/null' >> "$f" 
+		echo 'if [ ! -L /userdata/system/configs/Ryujinx/bis/user/save ]; then mkdir /userdata/system/configs/Ryujinx/bis/user/save 2>/dev/null; rsync -au /userdata/saves/Ryujinx/ /userdata/system/configs/Ryujinx/bis/user/save/ 2>/dev/null; fi' >> "$f"
+		echo 'if [ ! -L /userdata/system/configs/yuzu/nand/user/save ]; then mkdir /userdata/system/configs/yuzu/nand/user/save 2>/dev/null; rsync -au /userdata/saves/yuzu/ /userdata/system/configs/yuzu/nand/user/save/ 2>/dev/null; fi' >> "$f"
+		echo 'mkdir -p /userdata/system/configs/yuzu/keys 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/configs/yuzu/keys/ 2>/dev/null ' >> "$f"
+		echo 'mkdir -p /userdata/system/.local/share/yuzu/keys 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/.local/share/yuzu/keys/ 2>/dev/null ' >> "$f"
+		echo 'mkdir -p /userdata/system/configs/Ryujinx/system 2>/dev/null; cp -rL /userdata/bios/switch/*.keys /userdata/system/configs/Ryujinx/system/ 2>/dev/null ' >> "$f"
+		echo 'rm /usr/bin/yuzu 2>/dev/null; rm /usr/bin/yuzu-room 2>/dev/null' >> "$f"
+		echo 'mkdir -p /userdata/system/switch/logs 2>/dev/null ' >> "$f"
+		echo 'log1=/userdata/system/switch/logs/yuzuEA-out.txt 2>/dev/null ' >> "$f"
+		echo 'log2=/userdata/system/switch/logs/yuzuEA-err.txt 2>/dev/null ' >> "$f"
+		echo 'rm $log1 2>/dev/null && rm $log2 2>/dev/null ' >> "$f"
+		echo 'ulimit -H -n 819200; ulimit -S -n 819200; ulimit -S -n 819200 yuzu;' >> "$f"
+		echo 'rom="$(echo "$@" | sed '\''s,-f -g ,,g'\'')" ' >> "$f"
+		echo 'if [[ "$rom" = "" ]]; then ' >> "$f"
+		echo '  /userdata/system/switch/yuzuEA.AppImage -f -g > >(tee "$log1") 2> >(tee "$log2" >&2) ' >> "$f" 
+		echo 'else ' >> "$f"
+		echo '  rm /tmp/switchromname 2>/dev/null ' >> "$f" 
+		echo '    echo "$rom" >> /tmp/switchromname 2>/dev/null ' >> "$f" 
+		echo '      /userdata/system/switch/extra/batocera-switch-nsz-converter.sh ' >> "$f" 
+		echo '    rom="$(cat /tmp/switchromname)" ' >> "$f"
+		echo '  fs=$(blkid | grep "$(df -h /userdata | awk '\''END {print $1}'\'')" | sed '\''s,^.*TYPE=,,g'\'' | sed '\''s,",,g'\'' | tr '\''a-z'\'' '\''A-Z'\'') ' >> "$f"
+		echo '  if [[ "$fs" == *"EXT"* ]] || [[ "$fs" == *"BTR"* ]]; then ' >> "$f"
+		echo '    rm /tmp/yuzurom 2>/dev/null; ln -sf "$rom" "/tmp/yuzurom"; ROM="/tmp/yuzurom"; ' >> "$f"
+		echo '    /userdata/system/switch/yuzuEA.AppImage -f -g "$ROM" 1>"$log1" 2>"$log2" ' >> "$f"
+		echo '  else ' >> "$f"
+		echo '    ROM="$rom" ' >> "$f"
+		echo '    /userdata/system/switch/yuzuEA.AppImage -f -g "$ROM" 1>"$log1" 2>"$log2" ' >> "$f"
+		echo '  fi ' >> "$f"
+		echo 'fi' >> "$f"
+        dos2unix "$f" 2>/dev/null; chmod a+x "$f" 2>/dev/null
+        rm /userdata/system/switch/versionEA.txt 2>/dev/null
+        echo $version >> /userdata/system/switch/extra/versionEA.txt
+    else
+        echo -e "${T}YUZU-EA   [${W}!!${T}] download fail — place yuzuea4176.AppImage in (/system/switch/appimages) puis relance le script"
+        rm "$yuzuE" 2>/dev/null
+    fi
 fi
 ##
 #
