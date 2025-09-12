@@ -491,6 +491,11 @@ class EdenGenerator(Generator):
         if not yuzuConfig.has_section("System"):
             yuzuConfig.add_section("System")
 
+        yuzuConfig.set("System", "disable_nca_verification", "true")
+        yuzuConfig.set("System", "disable_nca_verification\\default", "true")
+        yuzuConfig.set("System", "hide_nca_verification_popup", "true")
+        yuzuConfig.set("System", "hide_nca_verification_popup\\default", "false")
+
         # Language
         if system.isOptSet('language'):
             yuzuConfig.set("System", "language_index", system.config["language"])
