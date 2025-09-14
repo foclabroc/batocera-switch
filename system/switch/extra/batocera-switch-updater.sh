@@ -838,7 +838,7 @@ rm /userdata/system/switch/appimages/ryujinx-1.2.81-linux_x64.tar.gz 2>/dev/null
 version="1.3.138"
 wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz" "https://git.ryujinx.app/api/v4/projects/68/packages/generic/Ryubing-Canary/${version}/ryujinx-canary-${version}-linux_x64.tar.gz"
 link_ryujinx=/userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz
-link_tarR="/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz"
+link_tarR="/userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz"
 # --------------------------------------------------------
 if [ "$N" = "1" ]; then C=""; else C="$E/$N"; fi
 if [ -f "$link_ryujinx" ]; then
@@ -846,12 +846,12 @@ if [ -f "$link_ryujinx" ]; then
 	      echo -e "${T}RYUJINX RYUBING   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 	        else
 	          if [ -f "$link_tarR" ]; then
-	            cp /userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
-			    echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST GREEMDEV USE 1.2.96 BACKUP INSTEAD   ${T}/1.2.96/ ${GREEN}SUCCESS";
+	            cp /userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
+			    echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST RYUBING USE 1.3.138 BACKUP INSTEAD   ${T}/1.3.138/ ${GREEN}SUCCESS";
 		      else
-	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/tGbwP0xLt1KcKXYS/ryujinx-canary-1.2.96-linux_x64.tar.gz"
-                cp /userdata/system/switch/appimages/ryujinx-canary-1.2.96-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
-	            echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST GREEMDEV USE 1.2.96 INSTEAD   ${T}/1.2.96/ ${GREEN}SUCCESS";
+	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/s0I2XnXRoXBMRMEp/ryujinx-canary-1.3.138-linux_x64.tar.gz"
+                cp /userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
+	            echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST RYUBING USE 1.3.138 INSTEAD   ${T}/1.3.138/ ${GREEN}SUCCESS";
 			  fi
 	fi
 
