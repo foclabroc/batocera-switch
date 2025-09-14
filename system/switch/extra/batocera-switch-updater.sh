@@ -891,7 +891,7 @@ T=$THEME_COLOR_RYUJINX
 	# fi
 rm /userdata/system/switch/appimages/ryujinx-1.2.81-linux_x64.tar.gz 2>/dev/null
 version=$(
-  curl -s "https://git.ryujinx.app/ryubing/ryujinx/-/releases" |
+  curl -s "https://git.ryujinx.app/ryubing/canary/-/releases" |
   grep -oP '/ryubing/ryujinx/-/releases/\K[0-9]+\.[0-9]+\.[0-9]+' |
   head -n1
 )
