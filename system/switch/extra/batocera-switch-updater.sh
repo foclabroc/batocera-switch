@@ -755,7 +755,7 @@ yuzuE="/userdata/system/switch/appimages/yuzuea4176.AppImage"
 if [ -f "$yuzuE" ]; then
     cp /userdata/system/switch/appimages/yuzuea4176.AppImage /userdata/system/switch/yuzuea4176.AppImage 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/yuzuea4176.AppImage" "https://foclabroc.freeboxos.fr:55973/share/4tyUNN7pSJ24fsQN/yuzuea4176.AppImage"
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/yuzuea4176.AppImage" "https://foclabroc.freeboxos.fr:55973/share/6_FB-NuZriqYuHKt/yuzuea4176.AppImage"
     cp /userdata/system/switch/appimages/yuzuea4176.AppImage /userdata/system/switch/yuzuea4176.AppImage 2>/dev/null; fi
 link_yuzuEA="/userdata/system/switch/yuzuea4176.AppImage"
 version="4176"
@@ -911,7 +911,7 @@ if [ -f "$link_ryujinx" ]; then
 	            cp /userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
 			    echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST RYUBING USE 1.3.138 BACKUP INSTEAD   ${T}/1.3.138/ ${GREEN}SUCCESS";
 		      else
-	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/WvUGkgTy0vtvECmL/ryujinx-canary-1.3.138-linux_x64.tar.gz"
+	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/0A4ENRF8IO0_9nzt/ryujinx-canary-1.3.138-linux_x64.tar.gz"
                 cp /userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
 	            echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST RYUBING USE 1.3.138 INSTEAD   ${T}/1.3.138/ ${GREEN}SUCCESS";
 			  fi
@@ -1076,7 +1076,7 @@ ryuA="/userdata/system/switch/appimages/ryujinxava1403.tar.gz"
 if [ -f "$ryuA" ]; then
     cp /userdata/system/switch/appimages/ryujinxava1403.tar.gz /userdata/system/switch/ryujinxava1403.tar.gz 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinxava1403.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/3BiI0DtG4wUp3TmH/ryujinxava1403.tar.gz"
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinxava1403.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/aQz2Hnkinjx4x69L/ryujinxava1403.tar.gz"
     cp /userdata/system/switch/appimages/ryujinxava1403.tar.gz /userdata/system/switch/ryujinxava1403.tar.gz 2>/dev/null; fi
 link_ryujinxavalonia="/userdata/system/switch/ryujinxava1403.tar.gz"
 version="1403"
@@ -1620,17 +1620,17 @@ clear
 echo -e "${W}INSTALL WITH LOCAL APPIMAGE (/system/switch/appimages/) OTHERWISE DOWNLOAD IT ONLINE WAIT 1 TO 5 MINUTES!!"
 mkdir /userdata/system/switch/appimages 2>/dev/null
 cd /userdata/system/switch/appimages
-citronE="/userdata/system/switch/appimages/citron0.7.1.AppImage"
+citronE="/userdata/system/switch/appimages/citron0.8.0.AppImage"
 if [ -f "$citronE" ]; then
-    cp /userdata/system/switch/appimages/citron0.7.1.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
+    cp /userdata/system/switch/appimages/citron0.8.0.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/citron0.7.1.AppImage" "https://foclabroc.freeboxos.fr:55973/share/pCHoiHGsKMcvASVK/citron0.7.1.AppImage"
-    cp /userdata/system/switch/appimages/citron0.7.1.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null; fi
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/citron0.8.0.AppImage" "https://foclabroc.freeboxos.fr:55973/share/Fiujpot8LiUmX8Of/citron0.8.0.AppImage"
+    cp /userdata/system/switch/appimages/citron0.8.0.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null; fi
         if [ -f "$citronE" ] && [ $(stat -c%s "$citronE") -gt 2048 ]; then
-		   echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.7.1/ ${GREEN}SUCCESS";
+		   echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.8.0/ ${GREEN}SUCCESS";
 		else
-		   rm /userdata/system/switch/appimages/citron0.7.1.AppImage 2>/dev/null
-		   echo -e "${T}CITRON   [${W}!!${T}] download fail put citron0.7.1.AppImage in (/system/switch/appimages) then relaunch script"; fi
+		   rm /userdata/system/switch/appimages/citron0.8.0.AppImage 2>/dev/null
+		   echo -e "${T}CITRON   [${W}!!${T}] download fail put citron0.8.0.AppImage in (/system/switch/appimages) then relaunch script"; fi
 
 chmod 777 /userdata/system/switch/*.AppImage 2>/dev/null
 chmod 777 /userdata/system/switch/extra/*.AppImage 2>/dev/null
@@ -1644,6 +1644,7 @@ rm /userdata/system/switch/appimages/citron0.5.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.6.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.6.1.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.7.0-2.AppImage 2>/dev/null
+rm /userdata/system/switch/appimages/citron0.7.1.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.AppImage 2>/dev/null
@@ -1681,7 +1682,7 @@ suda="/userdata/system/switch/appimages/sudachi1.0.15.AppImage"
 if [ -f "$suda" ]; then
     cp /userdata/system/switch/appimages/sudachi1.0.15.AppImage /userdata/system/switch/sudachi.AppImage 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/sudachi1.0.15.AppImage" "https://foclabroc.freeboxos.fr:55973/share/U-KHSvRpWkA0j2Kw/sudachi1.0.15.AppImage"
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/sudachi1.0.15.AppImage" "https://foclabroc.freeboxos.fr:55973/share/HYaogouYa05jIPgq/sudachi1.0.15.AppImage"
     cp /userdata/system/switch/appimages/sudachi1.0.15.AppImage /userdata/system/switch/sudachi.AppImage 2>/dev/null; fi
         if [ -f "$suda" ] && [ $(stat -c%s "$suda") -gt 2048 ]; then
 		   echo -e "${T}SUDACHI   ${T}❯❯   ${T}/V1.0.15/ ${GREEN}SUCCESS";

@@ -880,7 +880,7 @@ yuzuM="/userdata/system/switch/appimages/yuzu1734.AppImage"
 if [ -f "$yuzuM" ]; then
     cp /userdata/system/switch/appimages/yuzu1734.AppImage /userdata/system/switch/yuzu1734.AppImage 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/yuzu1734.AppImage" "https://foclabroc.freeboxos.fr:55973/share/ZVJV0uJF8Y_o7Mgt/yuzu1734.AppImage"
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/yuzu1734.AppImage" "https://foclabroc.freeboxos.fr:55973/share/2tGevHCFst_jvMta/yuzu1734.AppImage"
     cp /userdata/system/switch/appimages/yuzu1734.AppImage /userdata/system/switch/yuzu1734.AppImage 2>/dev/null; fi
 link_yuzu="/userdata/system/switch/yuzu1734.AppImage"
 version="1734"
@@ -1000,7 +1000,7 @@ yuzuE="/userdata/system/switch/appimages/yuzuea4176.AppImage"
 if [ -f "$yuzuE" ]; then
     cp /userdata/system/switch/appimages/yuzuea4176.AppImage /userdata/system/switch/yuzuea4176.AppImage 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/yuzuea4176.AppImage" "https://foclabroc.freeboxos.fr:55973/share/4tyUNN7pSJ24fsQN/yuzuea4176.AppImage"
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/yuzuea4176.AppImage" "https://foclabroc.freeboxos.fr:55973/share/6_FB-NuZriqYuHKt/yuzuea4176.AppImage"
     cp /userdata/system/switch/appimages/yuzuea4176.AppImage /userdata/system/switch/yuzuea4176.AppImage 2>/dev/null; fi
 link_yuzuEA="/userdata/system/switch/yuzuea4176.AppImage"
 version="4176"
@@ -1136,7 +1136,7 @@ if [ -f "$link_ryujinx" ]; then
 	            cp /userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
 			    echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST RYUBING USE 1.3.138 BACKUP INSTEAD   ${T}/1.3.138/ ${GREEN}SUCCESS";
 		      else
-	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/WvUGkgTy0vtvECmL/ryujinx-canary-1.3.138-linux_x64.tar.gz"
+	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/0A4ENRF8IO0_9nzt/ryujinx-canary-1.3.138-linux_x64.tar.gz"
                 cp /userdata/system/switch/appimages/ryujinx-canary-1.3.138-linux_x64.tar.gz /userdata/system/switch/ryujinx-${version}-linux_x64.tar.gz 2>/dev/null;
 	            echo -e "${T}RYUJINX   ${RED}FAIL TO DOWNLOAD LAST RYUBING USE 1.3.138 INSTEAD   ${T}/1.3.138/ ${GREEN}SUCCESS";
 			  fi
@@ -1292,7 +1292,7 @@ ryuL="/userdata/system/switch/appimages/ryujinxldn313.tar.gz"
 if [ -f "$ryuL" ]; then
     cp /userdata/system/switch/appimages/ryujinxldn313.tar.gz /userdata/system/switch/ryujinxldn313.tar.gz 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinxldn313.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/yxgfRfGi7tFT3uGR/ryujinxldn313.tar.gz"
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinxldn313.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/2_f1xiFwIqHhE02n/ryujinxldn313.tar.gz"
     cp /userdata/system/switch/appimages/ryujinxldn313.tar.gz /userdata/system/switch/ryujinxldn313.tar.gz 2>/dev/null; fi
 link_ryujinxldn="/userdata/system/switch/ryujinxldn313.tar.gz"
 version="3.1.3"
@@ -1461,7 +1461,7 @@ ryuA="/userdata/system/switch/appimages/ryujinxava1403.tar.gz"
 if [ -f "$ryuA" ]; then
     cp /userdata/system/switch/appimages/ryujinxava1403.tar.gz /userdata/system/switch/ryujinxava1403.tar.gz 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinxava1403.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/3BiI0DtG4wUp3TmH/ryujinxava1403.tar.gz"
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/ryujinxava1403.tar.gz" "https://foclabroc.freeboxos.fr:55973/share/aQz2Hnkinjx4x69L/ryujinxava1403.tar.gz"
     cp /userdata/system/switch/appimages/ryujinxava1403.tar.gz /userdata/system/switch/ryujinxava1403.tar.gz 2>/dev/null; fi
 link_ryujinxavalonia="/userdata/system/switch/ryujinxava1403.tar.gz"
 version="1403"
@@ -2283,7 +2283,7 @@ suyU="/userdata/system/switch/appimages/suyu.AppImage"
 if [ -f "$suyU" ]; then
     cp /userdata/system/switch/appimages/suyu.AppImage /userdata/system/switch/suyu.AppImage 2>/dev/null;
 else 
-    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/suyu.AppImage" "https://foclabroc.freeboxos.fr:55973/share/Z7WZA-bGONzqszmd/suyu.AppImage"
+    wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/suyu.AppImage" "https://foclabroc.freeboxos.fr:55973/share/LcVij-kko2zxhvJi/suyu.AppImage"
     cp /userdata/system/switch/appimages/suyu.AppImage /userdata/system/switch/suyu.AppImage 2>/dev/null; fi
     checksum_file=$(md5sum $suyU | awk '{print $1}')
     checksum_verified="0871793d8d393f4544d98eaf992c23c0"
