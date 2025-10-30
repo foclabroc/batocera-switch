@@ -529,6 +529,13 @@ class CitronGenerator(Generator):
         yuzuConfig.set("LibraryApplet", "swkbd_applet_mode", "0")
         yuzuConfig.set("LibraryApplet", "swkbd_applet_mode\\default", "false")
 
+    # web section
+        if not yuzuConfig.has_section("WebService"):
+            yuzuConfig.add_section("WebService")
+        
+        yuzuConfig.set("WebService", "enable_auto_update_check", "false")
+        yuzuConfig.set("WebService", "enable_auto_update_check\\default", "false")
+
     # controls section
         if not yuzuConfig.has_section("Controls"):
             yuzuConfig.add_section("Controls")
