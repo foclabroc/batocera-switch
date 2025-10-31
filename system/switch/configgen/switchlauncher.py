@@ -112,6 +112,57 @@ def main(args, maxnbplayers):
     else:
         return start_rom(args, maxnbplayers, args.rom, args.rom)
 
+# Définir le chemin du fichier YAML
+config_file_path = '/usr/share/batocera/configgen/configgen-defaults.yml'
+
+# Définir la configuration à ajouter
+new_config = {
+    'switch': {
+        'emulator': 'citron-emu',
+        'core': 'citron-emu',
+        'options': {
+            'forceNoBezel': True
+        }
+    }
+}
+
+def add_switch_config():
+    # Vérifier si le fichier existe
+    if not os.path.exists(config_file_path):
+        print(f"Le fichier de configuration {config_file_path} n'existe pas.")
+        return
+
+    # Lire le fichier YAML existant
+    with open(config_file_path, 'r') as file:
+        try:
+            data = yaml.safe_load(file)
+        except yaml.YAMLError as e:
+            print(f"Erreur de lecture du fichier YAML: {e}")
+            return
+
+    # Vérifier si la configuration fpinball existe déjà
+    if 'switch' in data:
+        print("La configuration switch existe déjà.")
+    else:
+        # Trouver la section 'default' et ajouter switch juste après
+        if 'default' in data:
+            print("Ajout de la configuration switch après 'default'.")
+            # Insérer la configuration 'switch' après 'default'
+            default_section = data.pop('default')  # Supprimer temporairement la section 'default'
+            data['default'] = default_section      # Réinsérer la section 'default' après
+            data['switch'] = new_config['switch']    # Ajouter la configuration 'fpinball'
+
+            # Sauvegarder le fichier YAML avec la nouvelle configuration
+            with open(config_file_path, 'w') as file:
+                try:
+                    yaml.dump(data, file, default_flow_style=False, allow_unicode=True)
+                    print("Configuration fpinball ajoutée avec succès.")
+                except yaml.YAMLError as e:
+                    print(f"Erreur lors de l'écriture dans le fichier YAML: {e}")
+
+# Appeler la fonction pour ajouter la configuration
+add_switch_config()
+
 def start_rom(args, maxnbplayers, rom, romConfiguration):
     global profiler
 

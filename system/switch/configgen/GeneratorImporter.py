@@ -13,7 +13,7 @@ def getGenerator(emulator: str) -> Generator:
     if emulator == 'eden':
         from generators.eden.edenGenerator import EdenGenerator
         return EdenGenerator()
-    if emulator == 'citron':
+    if emulator == 'citron-emu':
         from generators.citron.citronGenerator import CitronGenerator
         return CitronGenerator()
 

@@ -11,7 +11,7 @@ default:
     forceNoBezel:   false
 
 switch:
-  emulator: citron
-  core:     citron
+  emulator: citron-emu
+  core:     citron-emu
   options:
     forceNoBezel: true

@@ -26,7 +26,7 @@ class CitronGenerator(Generator):
 
     def getHotkeysContext(self) -> HotkeysContext:
         return {
-            "name": "citron",
+            "name": "citron-emu",
             "keys": { "exit": ["KEY_LEFTALT", "KEY_F4"] }
         }
 

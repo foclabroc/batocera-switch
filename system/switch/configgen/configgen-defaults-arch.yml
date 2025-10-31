@@ -5,5 +5,5 @@ default:
     hud_support: false
 
 switch:
-  emulator: citron
-  core:     citron
+  emulator: citron-emu
+  core:     citron-emu
