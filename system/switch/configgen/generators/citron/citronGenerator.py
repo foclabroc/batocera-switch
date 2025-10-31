@@ -170,7 +170,7 @@ class CitronGenerator(Generator):
         beforeyuzuConfig = batoceraFiles.CONF + '/yuzu/before-qt-config.ini'
         
         CitronGenerator.writeYuzuConfig(yuzuConfig,beforeyuzuConfig, system, playersControllers)
-        if system.config['emulator'] == 'citron':
+        if system.config['emulator'] == 'citron-emu':
             commandArray = ["/userdata/system/switch/extra/citronlaunch.AppImage", "-f",  "-g", rom ]
                       # "XDG_DATA_HOME":yuzuSaves, , "XDG_CACHE_HOME":batoceraFiles.CACHE, "XDG_CONFIG_HOME":yuzuHome,
         return Command.Command(
