@@ -1654,7 +1654,7 @@ if [ -f "$link_citron" ]; then
 	            echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.9.0 INSTEAD   ${T}/0.9.0/ ${GREEN}SUCCESS";
 			  fi
 	fi
-
+fi
 chmod 777 /userdata/system/switch/*.AppImage 2>/dev/null
 chmod 777 /userdata/system/switch/extra/*.AppImage 2>/dev/null
 echo
