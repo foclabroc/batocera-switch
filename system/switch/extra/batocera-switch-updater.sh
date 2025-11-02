@@ -1633,7 +1633,9 @@ mkdir /userdata/system/switch/appimages 2>/dev/null
 		   # echo -e "${T}CITRON   [${W}!!${T}] download fail put citron0.9.0.AppImage in (/system/switch/appimages) then relaunch script"; fi
 
 URL="https://git.citron-emu.org/Citron/Emulator/releases"
-version=$(curl -sL "$URL" | grep -oP '/Emulator/releases/\K[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n1)
+version=$(curl -sL "$URL" \
+  | grep -oE '/Emulator/releases/[0-9]+\.[0-9]+\.[0-9]+' \
+  | sed 's#.*/##' | sort -V | tail -n1)
 wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/citron.AppImage" "https://git.citron-emu.org/Citron/Emulator/releases/download/${version}/citron-${version}-linux-x86_64.AppImage"
 link_citron=/userdata/system/switch/citron.AppImage
 link_tarRC="/userdata/system/switch/appimages/citron0.9.0.AppImage"
