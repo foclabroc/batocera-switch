@@ -25,7 +25,7 @@ case $version in
         sleep 3
         curl -fsSL https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/main/system/switch/extra/batocera-switch-installer.sh | bash
         ;;
-    42)
+    42|43|44)
         echo "[Foclabroc Switch Installer] Déclenchement du script pour Batocera 42..."
         sleep 3
         curl -fsSL https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/batocera-switch-installer.sh | bash
