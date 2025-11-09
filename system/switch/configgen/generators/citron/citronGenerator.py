@@ -162,9 +162,12 @@ class CitronGenerator(Generator):
         if not os.path.exists("/userdata/system/.cache/citron"):
             os.mkdir("/userdata/system/.cache/citron")
 
-        #remove game_list if it exists and isn't a link
-        if os.path.exists("/userdata/system/.cache/citron/game_list"):
-            shutil.rmtree("/userdata/system/.cache/citron/game_list")
+        # remove game_list if it exists and isn't a link
+        if os.path.lexists("/userdata/system/.cache/citron/game_list"):
+            if os.path.islink("/userdata/system/.cache/citron/game_list") or os.path.isfile("/userdata/system/.cache/citron/game_list"):
+                os.unlink("/userdata/system/.cache/citron/game_list")
+            elif os.path.isdir("/userdata/system/.cache/citron/game_list"):
+                shutil.rmtree("/userdata/system/.cache/citron/game_list")
 
         yuzuConfig = batoceraFiles.CONF + '/yuzu/qt-config.ini'
         beforeyuzuConfig = batoceraFiles.CONF + '/yuzu/before-qt-config.ini'
