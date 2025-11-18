@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 # not the nicest way, possibly one of the faster i think
 # some naming rules may allow to modify this function to less than 10 lines
 
-def getGenerator(emulator: str) -> Generator:
+def get_generator(emulator: str) -> Generator:
 
     if emulator == 'eden':
         from generators.eden.edenGenerator import EdenGenerator

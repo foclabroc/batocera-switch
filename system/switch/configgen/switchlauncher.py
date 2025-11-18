@@ -6,15 +6,6 @@ from __future__ import annotations
 from configgen import profiler
 
 profiler.start()
-                 
-                                                                                                                                                                        
-                                                           
-                                                                                                   
-
-                                                    
-                   
-                                 
-                     
 
 ### import always needed ###
 import argparse
@@ -27,13 +18,8 @@ import time
 from pathlib import Path
 from sys import exit
 from typing import TYPE_CHECKING
-           
-           
-              
-                        
 
 from configgen import controllersConfig as controllers
-                        
 from configgen.batoceraPaths import BATOCERA_SHARE_DIR, SAVES, SYSTEM_SCRIPTS, USER_SCRIPTS
 from configgen.controller import Controller
 from Emulator import Emulator
@@ -54,167 +40,25 @@ if TYPE_CHECKING:
     from configgen.types import Resolution
 
 _logger = logging.getLogger(__name__)
-                                         
-                                                                     
 
 def main(args: argparse.Namespace, maxnbplayers: int) -> int:
-                                     
-
-                                                                                       
-                                                                      
-                                                                      
-                                                                                           
-            
-                                   
-               
-                                                                           
-                                             
-
-                                                                                        
-                           
-                                                                
-                        
-                                                                       
-            
-                                   
-               
-                
-                                                          
-
-                                                                                        
-                                                                
-                                                                          
-                                                        
-                                             
-
-                                                                   
-        
-                                                                                      
-                                                        
-                                             
-           
-            
-                                             
-
-                                
-                                                 
-
-            
-                                                            
-                        
-                                                                         
-                                                                     
-
-                                  
-                           
-
-                             
     # squashfs roms if squashed
-                                                         
     if args.rom.suffix == ".squashfs":
-                    
-                        
-            
         with squashfs_rom(args.rom) as rom:
             return start_rom(args, maxnbplayers, rom, args.rom)
-                
-                        
-                                           
-                       
     else:
         return start_rom(args, maxnbplayers, args.rom, args.rom)
 
 def start_rom(args: argparse.Namespace, maxnbplayers: int, rom: Path, original_rom: Path) -> int:
     player_controllers = Controller.load_for_players(maxnbplayers, args)
 
-                                      
-              
-               
-                                 
-                             
-                    
-                                
-         
-     
- 
-
-                        
-                                    
-                                            
-                                                                              
-              
-
-                                   
-                                             
-            
-                                       
-                                   
-                                                            
-                  
-
-                                                          
-                        
-                                                       
-         
-                                                                     
-                             
-                                                                       
-                                                                 
-                                                                                                  
-                                                                                            
-                                                                                          
-
-                                                                        
-                                                     
-                    
-                                                                                       
-                                                                          
-                                           
-                                                                                  
-
-                                                   
-                   
-
-                                                         
-                   
-
-                 
-                               
-
-                         
-                                      
-               
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                   
-
-                                       
-                                                                           
-
     # find the system to run
     systemName = args.system
     _logger.debug("Running system: %s", systemName)
     system = Emulator(args, original_rom)
-
     _logger.debug("Settings: %s", {
         key: '***' if 'password' in key else value for key, value in system.config.items()
     })
-
-                                 
-                                                 
-                                               
-                             
-                                         
-                                           
-                                       
-                                                    
-                                                          
-                                            
     if "emulator" in system.config and "core" in system.config:
         _logger.debug('emulator: %s, core: %s', system.config.emulator, system.config.core)
     else:
@@ -229,28 +73,10 @@ def start_rom(args: argparse.Namespace, maxnbplayers: int, rom: Path, original_r
     with wheelsUtils.configure_wheels(player_controllers, system, metadata) as (player_controllers, wheels):
         # find the generator
         generator = get_generator(system.config.emulator)
-                                    
-                                   
-                                                                                                       
-             
-                                                                                      
-         
-                                    
-                 
 
         # the resolution must be changed before configuration while the configuration may depend on it (ie bezels)
         wantedGameMode = generator.getResolutionMode(system.config)
         systemMode = videoMode.getCurrentMode()
-                                                             
-                                          
-                                                                            
-                                                         
-                                                                                                                                                      
-                                                                   
-         
-                                      
-                   
-
         resolutionChanged = False
         mouseChanged = False
         exitCode = 0
@@ -267,20 +93,9 @@ def start_rom(args: argparse.Namespace, maxnbplayers: int, rom: Path, original_r
 
             _logger.debug("current video mode: %s", newsystemMode)
             _logger.debug("wanted video mode: %s", wantedGameMode)
-                                           
 
             if wantedGameMode != 'default' and wantedGameMode != newsystemMode:
                 videoMode.changeMode(wantedGameMode)
-                 
-        
-                                              
-                                                                                                                                                
-                                                                                       
-                                             
-                                                                  
-                                          
-                                                      
-                                           
                 resolutionChanged = True
             gameResolution = videoMode.getCurrentResolution()
 
@@ -300,36 +115,18 @@ def start_rom(args: argparse.Namespace, maxnbplayers: int, rom: Path, original_r
             effectiveCore = ""
             if "core" in system.config and system.config.core is not None:
                 effectiveCore = system.config.core
-                                        
-                                                                                                            
-
             if generator.getMouseMode(system.config, rom):
                 mouseChanged = True
                 videoMode.changeMouse(True)
-                                       
-
             # SDL VSync is a big deal on OGA and RPi4
             if not system.config.get_bool('sdlvsync', True):
                 system.config["sdlvsync"] = '0'
             else:
                 system.config["sdlvsync"] = '1'
             os.environ.update({'SDL_RENDER_VSYNC': system.config["sdlvsync"]})
-                                      
-                           
-                              
-                                                        
-
             # run a script before emulator starts
             callExternalScripts(SYSTEM_SCRIPTS, "gameStart", [systemName, system.config.emulator, effectiveCore, rom])
             callExternalScripts(USER_SCRIPTS, "gameStart", [systemName, system.config.emulator, effectiveCore, rom])
-                                        
-                                                                
-                                      
-                                                               
-                                        
-                                                                   
-                                           
-                                                                         
 
             # run the emulator
             from configgen.utils.evmapy import evmapy
@@ -341,10 +138,7 @@ def start_rom(args: argparse.Namespace, maxnbplayers: int, rom: Path, original_r
                 executionDirectory = generator.executionDirectory(system.config, rom)
                 if executionDirectory is not None:
                     os.chdir(executionDirectory)
-
                 cmd = generator.generate(system, rom, player_controllers, metadata, guns, wheels, gameResolution)
-                               
-                                       
 
                 if system.config.get_bool('hud_support'):
                     hud_bezel = getHudBezel(system, generator, rom, gameResolution, system.guns_borders_size_name(guns), system.guns_border_ratio_type(guns))
@@ -360,18 +154,10 @@ def start_rom(args: argparse.Namespace, maxnbplayers: int, rom: Path, original_r
 
                 with profiler.pause():
                     exitCode = runCommand(cmd)
-                                                                                                                                          
 
             # run a script after emulator shuts down
-                                 
-              
             callExternalScripts(USER_SCRIPTS, "gameStop", [systemName, system.config.emulator, effectiveCore, rom])
             callExternalScripts(SYSTEM_SCRIPTS, "gameStop", [systemName, system.config.emulator, effectiveCore, rom])
-                                                                                
-                                        
-                                                                                          
-                                              
-                                            
 
         finally:
             # always restore the resolution
@@ -386,43 +172,6 @@ def start_rom(args: argparse.Namespace, maxnbplayers: int, rom: Path, original_r
                     videoMode.changeMouse(False)
                 except Exception:
                     pass  # don't fail
-                                                                                                                                          
-                                                               
-                                          
-                                                                          
-                                                                    
-                                                       
-
-                        
-                                  
-                                      
-                        
-                                 
-
-                                                
-                                                                                                                                         
-                                                                                                                                                      
-
-            
-                                       
-                             
-                
-                                                
-                             
-                                 
-
-                        
-                
-                                            
-                             
-                                 
-
-                                                                  
-                
-                                                            
-                             
-                                                                       
-                                 
     # exit
     return exitCode
 
@@ -451,7 +200,6 @@ def getHudBezel(system: Emulator, generator: Generator, rom: Path, gameResolutio
     else:
         _logger.debug("hud enabled. trying to apply the bezel %s", bezel)
 
-                                      
         bz_infos = bezelsUtil.getBezelInfos(rom, bezel, system.name, system.config.emulator)
         if bz_infos is None:
             _logger.debug("no bezel info file found")
@@ -583,25 +331,6 @@ def getHudBezel(system: Emulator, generator: Generator, rom: Path, gameResolutio
 
 def callExternalScripts(folder: Path, event: str, args: Iterable[str | Path]) -> None:
     if not folder.is_dir():
-
-             
-
-        
-                             
-            
-                                                         
-               
-                
-            
-                                                                   
-               
-                
-           
-            
-               
-
-                                             
-                                 
         return
 
     for file in folder.iterdir():
@@ -626,7 +355,6 @@ def getHudConfig(system: Emulator, systemName: str, emulator: str, core: str, ro
     if (mode := system.config.get('hud', 'none')) == 'none':
         return configstr + "background_alpha=0\n" # hide the background
 
-                               
     hud_position = "bottom-left"
     if (hud_corner := system.config.get('hud_corner', '')) != '':
         if hud_corner == "NW":
@@ -642,10 +370,6 @@ def getHudConfig(system: Emulator, systemName: str, emulator: str, core: str, ro
 
     gameName = system.es_game_info.get("name", "")
     gameThumbnail = system.es_game_info.get("thumbnail", "")
-                                    
-                      
-                                
-                                              
 
     # predefined values
     if mode == "perf":
@@ -666,10 +390,6 @@ def getHudConfig(system: Emulator, systemName: str, emulator: str, core: str, ro
 
 def runCommand(command: Command) -> int:
     global proc
-
-                                   
-                                 
-                                  
 
     # compute environment : first the current envs, then override by values set at generator level
     envvars: dict[str, str | Path] = dict(os.environ)
@@ -767,10 +487,6 @@ def launch() -> None:
             _logger.exception("configgen exception: ")
 
         profiler.stop()
-                     
-                         
-                              
-                                                                 
 
         time.sleep(1) # this seems to be required so that the gpu memory is restituated and available for es
 
