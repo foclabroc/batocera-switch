@@ -291,8 +291,23 @@ class CitronGenerator(Generator):
         yuzuConfig.set("UI", "Screenshots\\screenshot_path", "/userdata/screenshots")
         yuzuConfig.set("UI", "Screenshots\\screenshot_path\\default", "false")
 
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20citron\Controller_KeySeq", "Minus+Plus")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20citron\Controller_KeySeq\\default", "false")
+        #citron shortcuts
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\size", "2")#adjust to number of shortcut sets
+        #exit citron
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\name", "Exit citron")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\group", "Main Window")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\keyseq", "Ctrl+Q")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\controller_keyseq", "Plus+Minus")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\context", "1")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\repeat", "false")
+        #exit citron fullscreen
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\name", "Fullscreen")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\group", "Main Window")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\keyseq", "F11")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\controller_keyseq", "B+Minus")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\context", "1")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\repeat", "false")
+
         yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\KeySeq", "F4")
         yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\KeySeq\\default", "false")
         yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq", "Minus+B")
