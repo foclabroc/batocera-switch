@@ -6,7 +6,7 @@ import os
 import shutil
 import stat
 import batoceraFiles
-import controllersConfig as controllersConfig
+import configgen.controller as controllersConfig
 import configparser
 import logging
 from shutil import copyfile
@@ -193,7 +193,7 @@ class SudachiGenerator(Generator):
             env={"XDG_DATA_HOME":"/userdata/system/configs",
                  "XDG_CONFIG_HOME":"/userdata/system/configs",
                  "XDG_CACHE_HOME":"/userdata/system/configs",
-                 "SDL_GAMECONTROLLERCONFIG": controllersConfig.generateSdlGameControllerConfig(playersControllers),
+                 "SDL_GAMECONTROLLERCONFIG": controllersConfig.generate_sdl_game_controller_config(playersControllers),
                  "DRI_PRIME":"1", 
                  "AMD_VULKAN_ICD":"RADV",
                  "DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1":"1",
@@ -556,8 +556,8 @@ class SudachiGenerator(Generator):
             
             if debugcontrollers:
                 eslog.debug("=====================================================Start Bato Controller Debug Info=========================================================")
-                for index in playersControllers :
-                    controller = playersControllers[index]
+                for index, controller in enumerate(playersControllers):
+
                     eslog.debug("Controller configName: {}".format(controller.configName))
                     eslog.debug("Controller index: {}".format(controller.index))
                     eslog.debug("Controller realName: {}".format(controller.realName))                
@@ -793,9 +793,7 @@ class SudachiGenerator(Generator):
 
             cguid = [0 for x in range(10)]
             lastplayer = 0
-            for index in playersControllers :
-                controller = playersControllers[index]
-
+            for index, controller in enumerate(playersControllers):
 
                 if(controller.guid != "050000007e0500000620000001800000" and controller.guid != "050000007e0500000720000001800000"):
                     #don't run the code for Joy-Con (L) or Joy-Con (R) - Batocera adds these and only works with a pair
@@ -811,11 +809,11 @@ class SudachiGenerator(Generator):
                         eslog.debug("Which Pad: {}".format(which_pad))
 
 
-                    if(playersControllers[index].realName == 'Nintendo Switch Combined Joy-Cons'):  #works in Batocera v37
+                    if(playersControllers[index].real_name == 'Nintendo Switch Combined Joy-Cons'):  #works in Batocera v37
                         outputpath = "nintendo_joycons_combined"
                         sdl_mapping = next((item for item in sdl_devices if (item["path"] == outputpath or item["path"] == '/devices/virtual')),None)
                     else:
-                        command = "udevadm info --query=path --name=" + playersControllers[index].dev
+                        command = "udevadm info --query=path --name=" + controller.device_path
                         outputpath = ((subprocess.check_output(command, shell=True)).decode()).partition('/input/')[0]
                         sdl_mapping = next((item for item in sdl_devices if item["path"] == outputpath),None)
 
