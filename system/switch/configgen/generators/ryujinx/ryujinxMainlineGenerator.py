@@ -9,7 +9,7 @@ import uuid
 from os import path
 from os import environ
 import batoceraFiles
-import controllersConfig as controllersConfig
+import configgen.controller as controllersConfig
 from shutil import copyfile
 import logging
 import subprocess
@@ -69,10 +69,10 @@ class RyujinxMainlineGenerator(Generator):
                 commandArray = ["/userdata/system/switch/Ryujinx-Avalonia.AppImage" , rom]
             else:
                 commandArray = ["/userdata/system/switch/Ryujinx.AppImage" , rom]
-        eslog.debug("Controller Config before Playing: {}".format(controllersConfig.generateSdlGameControllerConfig(playersControllers)))
+        eslog.debug("Controller Config before Playing: {}".format(controllersConfig.generate_sdl_game_controller_config(playersControllers)))
         # X Bos series X gamepads with dongle are very problematic
         if ((system.isOptSet('ryu_sdl_game_controller_config') and not (system.config['ryu_sdl_game_controller_config'] == '0')) or not system.isOptSet('ryu_sdl_game_controller_config')): 
-            env_commandArray={"XDG_CONFIG_HOME":RyujinxHome, "XDG_CACHE_HOME":batoceraFiles.CACHE, "QT_QPA_PLATFORM":"xcb", "SDL_GAMECONTROLLERCONFIG": controllersConfig.generateSdlGameControllerConfig(playersControllers)}            
+            env_commandArray={"XDG_CONFIG_HOME":RyujinxHome, "XDG_CACHE_HOME":batoceraFiles.CACHE, "QT_QPA_PLATFORM":"xcb", "SDL_GAMECONTROLLERCONFIG": controllersConfig.generate_sdl_game_controller_config(playersControllers)}            
         else:
             env_commandArray={"XDG_CONFIG_HOME":RyujinxHome, "XDG_CACHE_HOME":batoceraFiles.CACHE, "QT_QPA_PLATFORM":"xcb"}
         
@@ -309,8 +309,8 @@ class RyujinxMainlineGenerator(Generator):
                     controller = playersControllers[index]
                     eslog.debug("Controller configName: {}".format(controller.configName))
                     eslog.debug("Controller index: {}".format(controller.index))
-                    eslog.debug("Controller realName: {}".format(controller.realName))                
-                    eslog.debug("Controller dev: {}".format(controller.dev))
+                    eslog.debug("Controller realName: {}".format(controller.real_name))                
+                    eslog.debug("Controller dev: {}".format(controller.device_path))
                     eslog.debug("Controller player: {}".format(controller.player))
                     eslog.debug("Controller GUID: {}".format(controller.guid))
                     eslog.debug("")
@@ -399,56 +399,56 @@ class RyujinxMainlineGenerator(Generator):
             sdl2.SDL_Quit()
 
             eslog.debug("Joysticks: {}".format(sdl_devices))
-            #New Logic
-            for index in playersControllers :
-                controller = playersControllers[index]
-                #inputguid = controller.guid
+            # New Logic
+            for index, controller in enumerate(playersControllers):
+
                 if(controller.guid != "050000007e0500000620000001800000" and controller.guid != "050000007e0500000720000001800000"):
-                    #don't run the code for Joy-Con (L) or Joy-Con (R) - Batocera adds these and only works with a pair
+
                     if debugcontrollers:
                         eslog.debug("Controller configName: {}".format(controller.configName))
                         eslog.debug("Controller index: {}".format(controller.index))
-                        eslog.debug("Controller realName: {}".format(controller.realName))                
-                        eslog.debug("Controller dev: {}".format(controller.dev))
+                        eslog.debug("Controller realName: {}".format(controller.real_name))
+                        eslog.debug("Controller dev: {}".format(controller.device_path))
                         eslog.debug("Controller player: {}".format(controller.player))
                         eslog.debug("Controller GUID: {}".format(controller.guid))
-
-
-
-                    if(playersControllers[index].realName == 'Nintendo Switch Combined Joy-Cons'):  #works in Batocera v37
+                    
+                    # Joy-Con pair case
+                    if controller.real_name == 'Nintendo Switch Combined Joy-Cons':
                         outputpath = "nintendo_joycons_combined"
-                        sdl_mapping = next((item for item in sdl_devices if (item["path"] == outputpath or item["path"] == '/devices/virtual')),None)
+                        sdl_mapping = next((item for item in sdl_devices if (item["path"] == outputpath or item["path"] == '/devices/virtual')), None)
                     else:
-                        command = "udevadm info --query=path --name=" + playersControllers[index].dev
+                        command = "udevadm info --query=path --name=" + controller.device_path
                         outputpath = ((subprocess.check_output(command, shell=True)).decode()).partition('/input/')[0]
-                        sdl_mapping = next((item for item in sdl_devices if item["path"] == outputpath),None)
+                        sdl_mapping = next((item for item in sdl_devices if item["path"] == outputpath), None)
 
                     eslog.debug("Mapping: {}".format(sdl_mapping))
-                    
+
+                    if sdl_mapping is None:
+                        continue  # avoid crash if unmapped device
+
                     myid = uuid.UUID(sdl_mapping['guid'])
-                    myid.bytes_le
                     convuuid = uuid.UUID(bytes=myid.bytes_le)
                     controllernumber = str(sdl_mapping['index'])
-                    #Map Keys and GUIDs
+
                     cvalue = {}
-    
+                    motion = {
+                        'motion_backend': "GamepadDriver",
+                        'sensitivity': 100,
+                        'gyro_deadzone': 1,
+                        'enable_motion': True
+                    }
 
-                    motion = {}
-                    motion['motion_backend'] = "GamepadDriver"
-                    motion['sensitivity'] = 100
-                    motion['gyro_deadzone'] = 1
-
-                    motion['enable_motion'] = bool('true')
-
-                    rumble = {}
-                    rumble['strong_rumble'] = 1
-                    rumble['weak_rumble'] = 1
+                    rumble = {
+                        'strong_rumble': 1,
+                        'weak_rumble': 1
+                    }
                     if system.isOptSet("ryu_enable_rumble"):
                         rumble['enable_rumble'] = bool(int(system.config["ryu_enable_rumble"]))
                     else:
-                        rumble['enable_rumble'] = bool('true')
-                    
+                        rumble['enable_rumble'] = True
+
                     which_pad = "p" + str(int(controller.player)) + "_pad"
+
 
                     if ((system.isOptSet(which_pad) and ((system.config[which_pad] == "ProController") or (system.config[which_pad] == "JoyconPair")) ) or not system.isOptSet(which_pad)):
                         left_joycon_stick = {}
