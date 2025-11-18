@@ -1,5 +1,7 @@
 #!/bin/bash
 
+batocera-mouse show
+
 # Lancer Citron comme avant
 "/userdata/system/switch/citron.AppImage" "$@"
 RET=$?
