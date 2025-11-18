@@ -247,6 +247,7 @@ wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/ryuj
 path=/userdata/system/switch/configgen/generators/citron
 url=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/configgen/generators/citron
 wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citronGenerator.py" "$url/citronGenerator.py"
+wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "$path/citronwrapper.sh" "$url/citronwrapper.sh"
 # -------------------------------------------------------------------- 
 # FILL /USERDATA/SYSTEM/SWITCH/CONFIGGEN/GENERATORS/EDEN
 path=/userdata/system/switch/configgen/generators/eden

@@ -16,9 +16,9 @@ from typing import TYPE_CHECKING, Final
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from ...controllersConfig import ControllerMapping
-    from ...Emulator import Emulator
-    from ...types import HotkeysContext
+    from configgen.controllersConfig import ControllerMapping
+    from Emulator import Emulator
+    from configgen.types import HotkeysContext
 
 eslog = logging.getLogger(__name__)
 
@@ -38,7 +38,9 @@ class CitronGenerator(Generator):
         if os.path.exists("/userdata/system/switch/extra/citronlaunch.AppImage"):
             st = os.stat("/userdata/system/switch/extra/citronlaunch.AppImage")
             os.chmod("/userdata/system/switch/extra/citronlaunch.AppImage", st.st_mode | stat.S_IEXEC)
-
+        if os.path.exists("/userdata/system/switch/configgen/generators/citron/citronwrapper.sh"):
+            st = os.stat("/userdata/system/switch/configgen/generators/citron/citronwrapper.sh")
+            os.chmod("/userdata/system/switch/configgen/generators/citron/citronwrapper.sh", st.st_mode | stat.S_IEXEC)
             #chmod citron app
             st = os.stat("/userdata/system/switch/extra/batocera-config-citron")
             os.chmod("/userdata/system/switch/extra/batocera-config-citron", st.st_mode | stat.S_IEXEC)
@@ -174,29 +176,30 @@ class CitronGenerator(Generator):
         
         CitronGenerator.writeYuzuConfig(yuzuConfig,beforeyuzuConfig, system, playersControllers)
         if system.config['emulator'] == 'citron-emu':
-            commandArray = ["/userdata/system/switch/extra/citronlaunch.AppImage", "-f",  "-g", rom ]
+            commandArray = ["/userdata/system/switch/configgen/generators/citron/citronwrapper.sh", "-f",  "-g", rom ]
                       # "XDG_DATA_HOME":yuzuSaves, , "XDG_CACHE_HOME":batoceraFiles.CACHE, "XDG_CONFIG_HOME":yuzuHome,
         return Command.Command(
             array=commandArray,
-            env={"XDG_DATA_HOME":"/userdata/system/configs",
-                 "XDG_CONFIG_HOME":"/userdata/system/configs",
-                 "XDG_CACHE_HOME":"/userdata/system/configs",
-                 "QT_QPA_PLATFORM_PLUGIN_PATH":"${QT_PLUGIN_PATH}",
-                 "QT_PLUGIN_PATH":"/userdata/system/switch/citron.AppImage",
-                 "QT_QPA_PLATFORM": "xcb",
-                 "DRI_PRIME":"1", 
-                 "AMD_VULKAN_ICD":"RADV",
-                 "DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1":"1",
-                 "QT_XKB_CONFIG_ROOT":"/usr/share/X11/xkb",
-                 "NO_AT_BRIDGE":"1",
-                 "XDG_MENU_PREFIX":"batocera-",
-                 "XDG_CONFIG_DIRS":"/etc/xdg",
-                 "XDG_CURRENT_DESKTOP":"XFCE",
-                 "DESKTOP_SESSION":"XFCE",
-                 "QT_FONT_DPI":"96",
-                 "QT_SCALE_FACTOR":"1",
-                 "GDK_SCALE":"1"}
-            )
+            env={
+                "XDG_DATA_HOME":"/userdata/system/configs",
+                "XDG_CONFIG_HOME":"/userdata/system/configs",
+                "XDG_CACHE_HOME":"/userdata/system/configs",
+                "QT_QPA_PLATFORM_PLUGIN_PATH":"${QT_PLUGIN_PATH}",
+                "QT_PLUGIN_PATH":"/userdata/system/switch/citron.AppImage",
+                "QT_QPA_PLATFORM": "xcb",
+                "DRI_PRIME":"1",
+                "AMD_VULKAN_ICD":"RADV",
+                "DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1":"1",
+                "QT_XKB_CONFIG_ROOT":"/usr/share/X11/xkb",
+                "NO_AT_BRIDGE":"1",
+                "XDG_MENU_PREFIX":"batocera-",
+                "XDG_CONFIG_DIRS":"/etc/xdg",
+                "XDG_CURRENT_DESKTOP":"XFCE",
+                "DESKTOP_SESSION":"XFCE",
+                "QT_FONT_DPI":"96",
+                "QT_SCALE_FACTOR":"1",
+                "GDK_SCALE":"1"}
+        )
 
 
     # @staticmethod
@@ -298,8 +301,23 @@ class CitronGenerator(Generator):
         yuzuConfig.set("UI", "Screenshots\\screenshot_path", "/userdata/screenshots")
         yuzuConfig.set("UI", "Screenshots\\screenshot_path\\default", "false")
 
-        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20citron\Controller_KeySeq", "Minus+Plus")
-        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20citron\Controller_KeySeq\\default", "false")
+        #citron shortcuts
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\size", "2")#adjust to number of shortcut sets
+        #exit citron
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\name", "Exit citron")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\group", "Main Window")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\keyseq", "Ctrl+Q")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\controller_keyseq", "Plus+Minus")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\context", "1")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\1\\repeat", "false")
+        #exit citron fullscreen
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\name", "Fullscreen")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\group", "Main Window")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\keyseq", "F11")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\controller_keyseq", "B+Minus")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\context", "1")
+        yuzuConfig.set("UI", "Shortcuts\\shortcuts\\2\\repeat", "false")
+
         yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\KeySeq", "F4")
         yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\KeySeq\\default", "false")
         yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq", "Minus+B")
