@@ -1577,7 +1577,7 @@ version=$(curl -sL "$URL" \
   | grep -Eo '/Citron/Emulator/releases/download/[0-9]+\.[0-9]+\.[0-9]+' \
   | sed -E 's#.*/download/##' \
   | sort -V | tail -n1)
-wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/citron.AppImage" "https://git.citron-emu.org/Citron/Emulator/releases/download/${version}/citron-${version}-linux-x86_64.AppImage"
+wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/citron.AppImage" "https://git.citron-emu.org/Citron/Emulator/releases/download/${version}/Citron_stable_${version}_linux.AppImage"
 link_citron=/userdata/system/switch/citron.AppImage
 link_tarRC="/userdata/system/switch/appimages/citron0.10.0.AppImage"
 # --------------------------------------------------------
@@ -1588,13 +1588,11 @@ if [ -f "$link_citron" ]; then
 	        else
 	          if [ -f "$link_tarRC" ]; then
 	            cp /userdata/system/switch/appimages/citron0.10.0.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
-			    #echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 BACKUP INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
-				echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.10.0/ ${GREEN}SUCCESS";
+			    echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 BACKUP INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
 		      else
 	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/citron0.10.0.AppImage" "https://foclabroc.freeboxos.fr:55973/share/yIPp6usHOnAITnOT/citron0.10.0.AppImage"
                 cp /userdata/system/switch/appimages/citron0.10.0.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
-	            #echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
-				echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.10.0/ ${GREEN}SUCCESS";
+	            echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
 			  fi
 	fi
 fi
