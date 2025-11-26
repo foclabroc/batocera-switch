@@ -1637,7 +1637,7 @@ version=$(curl -sL "$URL" \
   | grep -Eo '/Citron/Emulator/releases/download/[0-9]+\.[0-9]+\.[0-9]+' \
   | sed -E 's#.*/download/##' \
   | sort -V | tail -n1)
-wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/citron.AppImage" "https://git.citron-emu.org/Citron/Emulator/releases/download/${version}/citron-${version}-linux-x86_64.AppImage"
+wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/citron.AppImage" "https://git.citron-emu.org/Citron/Emulator/releases/download/${version}/Citron_stable_${version}_linux.AppImage"
 link_citron=/userdata/system/switch/citron.AppImage
 link_tarRC="/userdata/system/switch/appimages/citron0.10.0.AppImage"
 # --------------------------------------------------------
