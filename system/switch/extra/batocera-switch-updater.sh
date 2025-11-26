@@ -1648,13 +1648,11 @@ if [ -f "$link_citron" ]; then
 	        else
 	          if [ -f "$link_tarRC" ]; then
 	            cp /userdata/system/switch/appimages/citron0.10.0.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
-			    #echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 BACKUP INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
-				echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.10.0/ ${GREEN}SUCCESS";
+			    echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 BACKUP INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
 		      else
 	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/citron0.10.0.AppImage" "https://foclabroc.freeboxos.fr:55973/share/yIPp6usHOnAITnOT/citron0.10.0.AppImage"
                 cp /userdata/system/switch/appimages/citron0.10.0.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
-	            #echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
-				echo -e "${T}CITRON   ${T}❯❯   ${T}/V0.10.0/ ${GREEN}SUCCESS";
+	            echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
 			  fi
 	fi
 fi
