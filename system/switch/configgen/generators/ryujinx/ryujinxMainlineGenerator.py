@@ -251,7 +251,12 @@ class RyujinxMainlineGenerator(Generator):
         data['grid_size'] = 2
         data['application_sort'] = 0
         data['is_ascending_order'] = bool('true')
-        data['start_fullscreen'] = bool('true')
+
+        if system.isOptSet('ryu_start_fullscreen'):
+            data['start_fullscreen'] = bool(int(system.config["ryu_start_fullscreen"]))
+        else:
+            data['start_fullscreen'] = bool('true')
+        
         data['show_console'] = bool('true')
         data['enable_keyboard'] = bool(0)
         data['enable_mouse'] = bool(0)
