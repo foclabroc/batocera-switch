@@ -1,0 +1,1 @@
+exec '/userdata/system/switch/extra/batocera-switch-startup' "${1}" --unattended
