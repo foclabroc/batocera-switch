@@ -2194,7 +2194,7 @@ url_portsupdater=https://raw.githubusercontent.com/foclabroc/batocera-switch/ref
 url_portsupdaterkeys=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/roms/ports/Switch%20Updater.sh.keys   
 url_edendesktop=https://raw.githubusercontent.com/foclabroc/batocera-switch/main/system/switch/extra/batocera-config-eden
 url_foclaswitch=https://raw.githubusercontent.com/foclabroc/batocera-switch/refs/heads/42/system/switch/extra/foclaswitch
-   wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/extra/foclaswitch" "$url_foclaswitch"
+   wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/services/foclaswitch" "$url_foclaswitch"
    wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/configs/evmapy/switch.keys" "$url_switchkeys"
    ###curl -sSf "$url_switchkeys" -o "/userdata/system/configs/evmapy/switch.keys"
    wget -q --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/configs/emulationstation/es_features_switch.cfg" "$url_es_features_switch"
