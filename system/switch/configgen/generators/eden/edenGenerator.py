@@ -6,7 +6,7 @@ import os
 import shutil
 import stat
 import batoceraFiles
-import controllersConfig as controllersConfig
+import configgen.controller as controllersConfig
 import configparser
 import logging
 from shutil import copyfile
@@ -16,9 +16,9 @@ from typing import TYPE_CHECKING, Final
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from ...controllersConfig import ControllerMapping
-    from ...Emulator import Emulator
-    from ...types import HotkeysContext
+    from configgen.controller import ControllerMapping
+    from Emulator import Emulator
+    from configgen.types import HotkeysContext
 
 eslog = logging.getLogger(__name__)
 
@@ -35,22 +35,67 @@ class EdenGenerator(Generator):
         if os.path.exists("/userdata/system/switch/eden.AppImage"):
             st = os.stat("/userdata/system/switch/eden.AppImage")
             os.chmod("/userdata/system/switch/eden.AppImage", st.st_mode | stat.S_IEXEC)
+        if os.path.exists("/userdata/system/switch/extra/edenlaunch.AppImage"):
+            st = os.stat("/userdata/system/switch/extra/edenlaunch.AppImage")
+            os.chmod("/userdata/system/switch/extra/edenlaunch.AppImage", st.st_mode | stat.S_IEXEC)
 
-            # #chmod eden app
-            # st = os.stat("/userdata/system/switch/extra/batocera-config-eden")
-            # os.chmod("/userdata/system/switch/extra/batocera-config-eden", st.st_mode | stat.S_IEXEC)
+            #chmod eden app
+            st = os.stat("/userdata/system/switch/extra/batocera-config-eden")
+            os.chmod("/userdata/system/switch/extra/batocera-config-eden", st.st_mode | stat.S_IEXEC)
 
         if not os.path.exists("/lib/libthai.so.0.3.1"):
             copyfile("/userdata/system/switch/extra/libthai.so.0.3.1", "/lib/libthai.so.0.3.1")
         if not os.path.exists("/lib/libthai.so.0"):
             st = os.symlink("/lib/libthai.so.0.3.1","/lib/libthai.so.0")
 
-        #Create Keys Folder
+        #Create oldyuzu Folder needed by eden/sudachi
         if not os.path.exists(batoceraFiles.CONF + "/yuzu"):
             os.mkdir(batoceraFiles.CONF + "/yuzu")
 
         if not os.path.exists(batoceraFiles.CONF + "/yuzu/keys"):
             os.mkdir(batoceraFiles.CONF + "/yuzu/keys")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/amiibo"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/amiibo")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/crash_dumps"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/crash_dumps")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/custom"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/custom")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/dump"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/dump")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/game_list"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/game_list")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/icons"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/icons")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/load"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/load")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/log"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/log")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/nand"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/nand")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/play_time"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/play_time")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/screenshots"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/screenshots")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/sdmc"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/sdmc")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/shader"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/shader")
+
+        if not os.path.exists(batoceraFiles.CONF + "/yuzu/tas"):
+            os.mkdir(batoceraFiles.CONF + "/yuzu/tas")
 
         #Create OS Saves folder
         if not os.path.exists(batoceraFiles.SAVES + "/yuzu"):
@@ -117,16 +162,19 @@ class EdenGenerator(Generator):
         if not os.path.exists("/userdata/system/.cache/eden"):
             os.mkdir("/userdata/system/.cache/eden")
 
-        #remove game_list if it exists and isn't a link
-        if os.path.exists("/userdata/system/.cache/eden/game_list"):
-            shutil.rmtree("/userdata/system/.cache/eden/game_list")
+        # remove game_list if it exists and isn't a link
+        if os.path.lexists("/userdata/system/.cache/eden/game_list"):
+            if os.path.islink("/userdata/system/.cache/eden/game_list") or os.path.isfile("/userdata/system/.cache/eden/game_list"):
+                os.unlink("/userdata/system/.cache/eden/game_list")
+            elif os.path.isdir("/userdata/system/.cache/eden/game_list"):
+                shutil.rmtree("/userdata/system/.cache/eden/game_list")
 
         yuzuConfig = batoceraFiles.CONF + '/yuzu/qt-config.ini'
         beforeyuzuConfig = batoceraFiles.CONF + '/yuzu/before-qt-config.ini'
         
         EdenGenerator.writeYuzuConfig(yuzuConfig,beforeyuzuConfig, system, playersControllers)
         if system.config['emulator'] == 'eden':
-            commandArray = ["/userdata/system/switch/eden.AppImage", "-f",  "-g", rom ]
+            commandArray = ["/userdata/system/switch/extra/edenlaunch.AppImage", "-f",  "-g", rom ]
                       # "XDG_DATA_HOME":yuzuSaves, , "XDG_CACHE_HOME":batoceraFiles.CACHE, "XDG_CONFIG_HOME":yuzuHome,
         return Command.Command(
             array=commandArray,
@@ -254,18 +302,18 @@ class EdenGenerator(Generator):
         yuzuConfig.set("UI", "Screenshots\\screenshot_path", "/userdata/screenshots")
         yuzuConfig.set("UI", "Screenshots\\screenshot_path\\default", "false")
 
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20eden\Controller_KeySeq", "Minus+Plus")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20eden\Controller_KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\KeySeq", "F4")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq", "Minus+B")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq", "Home+ZL")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq", "Esc")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq\\default", "false")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq", "P")
-        yuzuConfig.set("UI", "Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20eden\Controller_KeySeq", "Minus+Plus")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20eden\Controller_KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\KeySeq", "F4")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq", "Minus+B")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Fullscreen\Controller_KeySeq\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq", "Home+ZL")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\Controller_KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq", "Esc")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Exit%20Fullscreen\KeySeq\\default", "false")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq", "P")
+        yuzuConfig.set("UI", r"Shortcuts\Main%20Window\Continue\Pause%20Emulation\KeySeq\default", "false")
 
     # Data Storage section
         if not yuzuConfig.has_section("Data%20Storage"):
@@ -492,7 +540,6 @@ class EdenGenerator(Generator):
             yuzuConfig.add_section("LibraryApplet")
         yuzuConfig.set("LibraryApplet", "swkbd_applet_mode", "0")
         yuzuConfig.set("LibraryApplet", "swkbd_applet_mode\\default", "false")
-
 
     # controls section
         if not yuzuConfig.has_section("Controls"):
@@ -750,8 +797,7 @@ class EdenGenerator(Generator):
 
             cguid = [0 for x in range(10)]
             lastplayer = 0
-            for index in playersControllers :
-                controller = playersControllers[index]
+            for index, controller in enumerate(playersControllers):
 
 
                 if(controller.guid != "050000007e0500000620000001800000" and controller.guid != "050000007e0500000720000001800000"):
@@ -768,11 +814,11 @@ class EdenGenerator(Generator):
                         eslog.debug("Which Pad: {}".format(which_pad))
 
 
-                    if(playersControllers[index].realName == 'Nintendo Switch Combined Joy-Cons'):  #works in Batocera v37
+                    if(playersControllers[index].real_name == 'Nintendo Switch Combined Joy-Cons'):  #works in Batocera v37
                         outputpath = "nintendo_joycons_combined"
                         sdl_mapping = next((item for item in sdl_devices if (item["path"] == outputpath or item["path"] == '/devices/virtual')),None)
                     else:
-                        command = "udevadm info --query=path --name=" + playersControllers[index].dev
+                        command = "udevadm info --query=path --name=" + controller.device_path
                         outputpath = ((subprocess.check_output(command, shell=True)).decode()).partition('/input/')[0]
                         sdl_mapping = next((item for item in sdl_devices if item["path"] == outputpath),None)
 
@@ -1547,7 +1593,7 @@ class EdenGenerator(Generator):
 
 
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_connected", "false")
-                yuzuConfig.set("Controls", "player_" + controllernumber + "_connected\default", "true")
+                yuzuConfig.set("Controls", "player_" + controllernumber + "_connected\\default", "true")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_type", "0")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_type\\default", "true")
                 yuzuConfig.set("Controls", "player_" + controllernumber + "_vibration_enabled", "true")
