@@ -316,7 +316,7 @@ class EdenGenerator(Generator):
         if system.isOptSet('yuzu_backend'):
             yuzuConfig.set("Renderer", "backend", system.config["yuzu_backend"])
         else:
-            yuzuConfig.set("Renderer", "backend", "0")
+            yuzuConfig.set("Renderer", "backend", "1")
         yuzuConfig.set("Renderer", "backend\\default", "false")
 
         # Async Shader compilation
