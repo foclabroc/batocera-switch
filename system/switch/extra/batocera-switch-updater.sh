@@ -1686,8 +1686,8 @@ rm /userdata/system/switch/appimages/suyu.AppImage 2>/dev/null
 
 
 #version=$(curl -s https://api.github.com/repos/eden-emulator/Releases/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
-version="v0.0.3"
-url="https://github.com/eden-emulator/Releases/releases/download/${version}/Eden-Linux-${version}-amd64.AppImage"
+version="v0.0.4"
+url="https://github.com/eden-emulator/Releases/releases/download/${version}/Eden-Linux-${version}-amd64-gcc-standard.AppImage"
 wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies \
   -O "/userdata/system/switch/eden.AppImage" "$url"
 link_Eden=/userdata/system/switch/eden.AppImage
