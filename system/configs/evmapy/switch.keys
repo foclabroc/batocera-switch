@@ -6,7 +6,7 @@
                 "start"
             ],
             "type": "exec",
-            "target": ["unclutter-remote -h && killall -9 eden sudachi sudachi-room Sudachi citron Citron citron.AppImage AppRun.wrapped suyu suyu.AppImage suyu-room yuzu yuzu-room yuzuEA yuzu.AppImage yuzuEA.AppImage 2>/dev/null"]
+            "target": ["unclutter-remote -h && killall -9 eden sudachi sudachi-room Sudachi citron Citron citron.AppImage AppRun.wrapped suyu suyu.AppImage suyu-room yuzu yuzu-room yuzuEA yuzu.AppImage yuzuEA.AppImage Ryujinx.AppImage 2>/dev/null"]
         },
         {
             "trigger": ["hotkey", "start"],
