@@ -1610,6 +1610,7 @@ rm /userdata/system/switch/appimages/citron0.6.1.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.7.0-2.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.7.1.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.8.0.AppImage 2>/dev/null
+rm /userdata/system/switch/appimages/citron0.9.0.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.10.0.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.zip 2>/dev/null
