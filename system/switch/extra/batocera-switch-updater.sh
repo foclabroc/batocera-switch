@@ -1579,7 +1579,7 @@ version=$(curl -sL "$URL" \
   | sort -V | tail -n1)
 wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/citron.AppImage" "https://git.citron-emu.org/Citron/Emulator/releases/download/${version}/Citron_stable_${version}_linux.AppImage"
 link_citron=/userdata/system/switch/citron.AppImage
-link_tarRC="/userdata/system/switch/appimages/citron0.10.0.AppImage"
+link_tarRC="/userdata/system/switch/appimages/citron0.12.25.AppImage"
 # --------------------------------------------------------
 if [ "$N" = "1" ]; then C=""; else C="$E/$N"; fi
 if [ -f "$link_citron" ]; then
@@ -1587,12 +1587,12 @@ if [ -f "$link_citron" ]; then
 	      echo -e "${T}CITRON   ${T}❯❯   ${T}/V$version/ ${GREEN}SUCCESS"
 	        else
 	          if [ -f "$link_tarRC" ]; then
-	            cp /userdata/system/switch/appimages/citron0.10.0.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
-			    echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 BACKUP INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
+	            cp /userdata/system/switch/appimages/citron0.12.25.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
+			    echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.12.25 BACKUP INSTEAD   ${T}/0.12.25/ ${GREEN}SUCCESS";
 		      else
-	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/citron0.10.0.AppImage" "https://foclabroc.freeboxos.fr:55973/share/yIPp6usHOnAITnOT/citron0.10.0.AppImage"
+	            wget -q --show-progress --tries=10 --no-check-certificate --no-cache --no-cookies -O "/userdata/system/switch/appimages/citron0.12.25.AppImage" "https://foclabroc.freeboxos.fr:55973/share/rr2EtI2hVlWoy90p/citron0.12.25.AppImage"
                 cp /userdata/system/switch/appimages/citron0.10.0.AppImage /userdata/system/switch/citron.AppImage 2>/dev/null;
-	            echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.10.0 INSTEAD   ${T}/0.10.0/ ${GREEN}SUCCESS";
+	            echo -e "${T}CITRON   ${RED}FAIL TO DOWNLOAD LAST CITRON USE 0.12.25 INSTEAD   ${T}/0.12.25/ ${GREEN}SUCCESS";
 			  fi
 	fi
 fi
@@ -1610,6 +1610,7 @@ rm /userdata/system/switch/appimages/citron0.6.1.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.7.0-2.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.7.1.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/citron0.8.0.AppImage 2>/dev/null
+rm /userdata/system/switch/appimages/citron0.10.0.AppImage 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.zip 2>/dev/null
 rm /userdata/system/switch/appimages/sudachi1.0.12.AppImage 2>/dev/null
